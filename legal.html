@@ -1,0 +1,1509 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy & Terms of Use — Hawkeye Teleradiology</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ── RESET ── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        background: #0d1b2a;
+        color: rgba(200, 216, 232, 0.7);
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* ── TOKENS ── */
+      :root {
+        --pg: #f0f4f8;
+        --pg-alt: #e8edf3;
+        --pg-deep: #dde4ec;
+        --card: #ffffff;
+        --ink: #0d1b2a;
+        --body: #3d5166;
+        --muted: #6b7f94;
+        --muted2: #9eb0c2;
+        --teal: #00c8b4;
+        --teal-l: rgba(0, 200, 180, 0.08);
+        --teal-m: rgba(0, 200, 180, 0.15);
+        --teal-b: rgba(0, 200, 180, 0.22);
+        --teal-d: #009e8c;
+        --border: rgba(13, 27, 42, 0.1);
+        --border-s: rgba(13, 27, 42, 0.06);
+        --r: 6px;
+        --rl: 12px;
+        --max: 1160px;
+        --pad: clamp(1.25rem, 5vw, 4rem);
+        --font-d: "Space Grotesk", sans-serif;
+        --font-b: "Inter", sans-serif;
+      }
+
+      /* ── GLOBAL TYPE ── */
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-d);
+        color: var(--ink);
+        letter-spacing: -0.025em;
+      }
+      h1 {
+        font-size: clamp(2.2rem, 4vw, 3rem);
+        font-weight: 700;
+        line-height: 1.1;
+      }
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 0.85rem;
+      }
+      h3 {
+        font-size: 1.02rem;
+        font-weight: 600;
+        line-height: 1.3;
+        margin-bottom: 0.5rem;
+        color: var(--ink);
+      }
+      p {
+        color: var(--body);
+        font-family: var(--font-b);
+        margin-bottom: 1rem;
+      }
+      em.teal {
+        font-style: normal;
+        color: var(--teal);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-d);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 1rem;
+      }
+      .eyebrow::before {
+        content: "";
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--teal);
+        flex-shrink: 0;
+      }
+
+      .nav-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+        filter: brightness(0) invert(1);
+        opacity: 0.9;
+      }
+
+      /* ── BUTTONS ── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-family: var(--font-d);
+        font-size: 0.88rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        padding: 0.82rem 1.85rem;
+        border-radius: var(--r);
+        transition: all 0.2s;
+        white-space: nowrap;
+        cursor: pointer;
+        border: none;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+      .btn-teal {
+        background: var(--teal);
+        color: var(--ink);
+      }
+      .btn-teal:hover {
+        background: var(--teal-d);
+        opacity: 1;
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--ink);
+        border: 1.5px solid var(--teal-b);
+        transition:
+          border-color 0.2s,
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-outline:hover {
+        border-color: var(--teal);
+        background: var(--teal-l);
+        opacity: 1;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 300;
+        height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 var(--pad);
+        background: rgba(13, 27, 42, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(200, 216, 232, 0.1);
+        transition:
+          background 0.3s,
+          box-shadow 0.3s;
+      }
+      nav.scrolled {
+        background: rgba(13, 27, 42, 0.98);
+        box-shadow: 0 1px 28px rgba(0, 0, 0, 0.3);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-family: var(--font-d);
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        color: rgba(200, 216, 232, 0.55);
+        transition: color 0.2s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #fff;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .nav-pill {
+        font-family: var(--font-d);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--teal);
+        border: 1px solid var(--teal-b);
+        padding: 0.35rem 0.85rem;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .nav-pill:hover {
+        background: var(--teal-l);
+        border-color: var(--teal);
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 6px;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+      .hamburger span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: #fff;
+        border-radius: 2px;
+      }
+      .mob-menu {
+        display: none;
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: rgba(13, 27, 42, 0.97);
+        border-bottom: 1px solid rgba(200, 216, 232, 0.1);
+        padding: 1.5rem var(--pad);
+        z-index: 299;
+        flex-direction: column;
+        gap: 1rem;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+      .mob-menu.open {
+        display: flex;
+      }
+      .mob-menu a {
+        font-family: var(--font-d);
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: rgba(200, 216, 232, 0.55);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+      }
+      .mob-menu a:hover {
+        color: #fff;
+      }
+      .mob-sep {
+        height: 0.5px;
+        background: var(--border);
+        margin: 0.25rem 0;
+      }
+
+      /* ── PAGE HEADER ── */
+      .page-header {
+        padding: 3.5rem var(--pad) 2.5rem;
+        background: #0a1520;
+        border-bottom: 1px solid rgba(200, 216, 232, 0.1);
+      }
+      .page-header-inner {
+        max-width: 680px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .page-breadcrumb {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-d);
+        font-size: 0.72rem;
+        font-weight: 500;
+        color: rgba(200, 216, 232, 0.4);
+        margin-bottom: 1.25rem;
+      }
+      .page-breadcrumb a {
+        color: rgba(200, 216, 232, 0.4);
+        transition: color 0.2s;
+      }
+      .page-breadcrumb a:hover {
+        color: var(--teal);
+      }
+      .page-breadcrumb span {
+        color: var(--teal);
+      }
+      .page-header h1 {
+        margin-bottom: 1rem;
+        color: #fff;
+      }
+      .page-header .page-desc {
+        font-size: 0.97rem;
+        line-height: 1.8;
+        color: rgba(200, 216, 232, 0.55);
+        max-width: 540px;
+        margin: 0 auto;
+      }
+      .page-meta {
+        margin-top: 1.25rem;
+        font-family: var(--font-d);
+        font-size: 0.72rem;
+        color: rgba(200, 216, 232, 0.3);
+        letter-spacing: 0.03em;
+      }
+
+      /* ── LAWYER REVIEW BANNER ── */
+      .review-banner {
+        background: rgba(148, 104, 0, 0.12);
+        border-top: 1px solid rgba(148, 104, 0, 0.3);
+        border-bottom: 1px solid rgba(148, 104, 0, 0.3);
+        padding: 1.1rem var(--pad);
+      }
+      .review-banner-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        display: flex;
+        gap: 0.9rem;
+        align-items: flex-start;
+      }
+      .review-banner svg {
+        width: 18px;
+        height: 18px;
+        stroke: rgba(255, 210, 100, 0.9);
+        fill: none;
+        stroke-width: 2;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .review-banner p {
+        font-size: 0.84rem;
+        color: rgba(255, 210, 100, 0.85);
+        margin: 0;
+        line-height: 1.6;
+      }
+      .review-banner strong {
+        color: rgba(255, 210, 100, 1);
+      }
+
+      /* ── LEGAL LAYOUT ── */
+      .legal-section {
+        background: #111e2e;
+        padding: 4.5rem var(--pad) 6rem;
+      }
+      .legal-layout {
+        max-width: var(--max);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 3.5rem;
+        align-items: start;
+      }
+      .legal-toc {
+        position: sticky;
+        top: 90px;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: var(--rl);
+        padding: 1.5rem;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+        max-height: calc(100vh - 110px);
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 109, 98, 0.2) transparent;
+      }
+      .legal-toc::-webkit-scrollbar {
+        width: 4px;
+      }
+      .legal-toc::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .legal-toc::-webkit-scrollbar-thumb {
+        background: rgba(0, 109, 98, 0.2);
+        border-radius: 2px;
+      }
+      .legal-toc::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 200, 180, 0.4);
+      }
+      .legal-toc-label {
+        font-family: var(--font-d);
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted2);
+        margin-bottom: 0.9rem;
+      }
+      .legal-toc ul {
+        list-style: none;
+      }
+      .legal-toc li {
+        margin-bottom: 0.15rem;
+      }
+      .legal-toc a {
+        display: block;
+        font-size: 0.82rem;
+        color: var(--muted);
+        padding: 0.42rem 0.6rem;
+        border-radius: var(--r);
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .legal-toc a:hover {
+        color: var(--teal);
+        background: var(--teal-l);
+      }
+      .legal-toc .toc-divider {
+        height: 0.5px;
+        background: var(--border-s);
+        margin: 0.7rem 0;
+      }
+      .legal-toc .toc-doc-label {
+        font-family: var(--font-d);
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--teal);
+        padding: 0.4rem 0.6rem 0.15rem;
+      }
+
+      .legal-content {
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: var(--rl);
+        padding: 3rem clamp(1.75rem, 4vw, 3.5rem);
+        box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
+      }
+      .legal-doc-title {
+        font-family: var(--font-d);
+        font-size: 1.85rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+        padding-top: 0.5rem;
+      }
+      .legal-doc-title:first-child {
+        padding-top: 0;
+      }
+      .legal-doc-updated {
+        font-family: var(--font-d);
+        font-size: 0.74rem;
+        color: var(--muted2);
+        margin-bottom: 2rem;
+      }
+      .legal-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 3.5rem 0;
+      }
+      .legal-block {
+        margin-bottom: 2.25rem;
+        scroll-margin-top: 90px;
+      }
+      .legal-block h2 {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 1.18rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 1px solid var(--border-s);
+      }
+      .legal-block-num {
+        font-family: var(--font-d);
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--teal);
+        background: var(--teal-l);
+        border-radius: 50%;
+        width: 26px;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .legal-block p {
+        font-size: 0.9rem;
+        line-height: 1.8;
+      }
+      .legal-block ul {
+        margin: 0 0 1rem 0;
+        padding-left: 1.3rem;
+      }
+      .legal-block li {
+        font-size: 0.9rem;
+        line-height: 1.75;
+        color: var(--body);
+        margin-bottom: 0.4rem;
+      }
+      .legal-block li strong {
+        color: var(--ink);
+      }
+      .legal-note {
+        background: rgba(0, 109, 98, 0.06);
+        border-left: 3px solid rgba(0, 109, 98, 0.25);
+        border-radius: 0 var(--r) var(--r) 0;
+        padding: 0.9rem 1.1rem;
+        font-size: 0.83rem;
+        color: #6b7f94;
+        margin: 1rem 0;
+      }
+      .legal-note strong {
+        color: #0d1b2a;
+      }
+      .legal-block a.inline-link {
+        color: var(--teal);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .placeholder {
+        background: rgba(180, 128, 0, 0.08);
+        color: #946800;
+        border: 1px dashed rgba(180, 128, 0, 0.4);
+        border-radius: 4px;
+        padding: 0.05rem 0.4rem;
+        font-size: 0.85em;
+        font-weight: 500;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: #060d16;
+        border-top: 1px solid rgba(200, 216, 232, 0.1);
+        padding: 4rem var(--pad) 2.5rem;
+      }
+      .footer-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+      .footer-brand p {
+        font-size: 0.82rem;
+        max-width: 240px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .footer-badges {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        margin-top: 0.8rem;
+      }
+      .badge {
+        font-family: var(--font-d);
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        border: 0.5px solid rgba(255, 255, 255, 0.15);
+        border-radius: 4px;
+        padding: 3px 7px;
+      }
+      .fcol h4 {
+        font-family: var(--font-d);
+        font-size: 0.63rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: 0.85rem;
+      }
+      .fcol ul {
+        list-style: none;
+      }
+      .fcol li {
+        margin-bottom: 0.5rem;
+      }
+      .fcol a {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.45);
+        transition: color 0.2s;
+      }
+      .fcol a:hover {
+        color: #fff;
+      }
+      .footer-bottom {
+        border-top: 0.5px solid rgba(255, 255, 255, 0.07);
+        padding-top: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .footer-bottom p {
+        font-size: 0.73rem;
+        color: rgba(255, 255, 255, 0.3);
+        margin: 0;
+      }
+      .footer-legal-links {
+        display: flex;
+        gap: 1.1rem;
+      }
+      .footer-legal-links a {
+        font-size: 0.73rem;
+        color: rgba(255, 255, 255, 0.4);
+        transition: color 0.2s;
+      }
+      .footer-legal-links a:hover {
+        color: #fff;
+      }
+
+      /* ── MODAL ── */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 500;
+        background: rgba(6, 12, 22, 0.85);
+        backdrop-filter: blur(12px);
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .modal {
+        background: #111e2e;
+        border: 1px solid rgba(200, 216, 232, 0.1);
+        border-radius: var(--rl);
+        padding: 2.5rem;
+        width: 100%;
+        max-width: 500px;
+        position: relative;
+        animation: modalIn 0.25s ease;
+      }
+      @keyframes modalIn {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .modal-close {
+        position: absolute;
+        top: 1.1rem;
+        right: 1.1rem;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(200, 216, 232, 0.1);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .modal-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .modal-close svg {
+        width: 12px;
+        height: 12px;
+        stroke: rgba(200, 216, 232, 0.55);
+        fill: none;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+      }
+      .modal h3 {
+        font-size: 1.35rem;
+        margin-bottom: 0.4rem;
+        color: #fff;
+      }
+      .modal-sub {
+        font-size: 0.87rem;
+        color: rgba(200, 216, 232, 0.55);
+        margin-bottom: 1.75rem;
+        line-height: 1.6;
+      }
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      .form-group label {
+        display: block;
+        font-family: var(--font-d);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.4rem;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(200, 216, 232, 0.1);
+        border-radius: var(--r);
+        padding: 0.72rem 0.95rem;
+        font-family: var(--font-b);
+        font-size: 0.88rem;
+        color: #fff;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--teal);
+      }
+      .form-group select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7F94' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.9rem center;
+        padding-right: 2.2rem;
+        cursor: pointer;
+      }
+      .form-group select option {
+        background: #111e2e;
+        color: #fff;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.85rem;
+      }
+      .form-note {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-top: 1.1rem;
+        text-align: center;
+        line-height: 1.5;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        .legal-layout {
+          grid-template-columns: 1fr;
+        }
+        .legal-toc {
+          position: static;
+        }
+      }
+      @media (max-width: 768px) {
+        .nav-links,
+        .nav-right .btn,
+        .nav-pill {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .legal-content {
+          padding: 2rem 1.25rem;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .legal-toc {
+          display: none;
+        }
+        .legal-layout {
+          gap: 0;
+        }
+      }
+      @media (max-width: 560px) {
+        h1 {
+          font-size: 1.9rem;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav id="mainnav">
+      <a href="index.html" class="nav-logo">
+        <img
+          src="https://hawkeye.nexcrafters.com/wp-content/uploads/2026/06/Hawkeye-Logo.png"
+          alt="Hawkeye Teleradiology"
+        />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="for-radiologists.html" class="nav-pill">For Radiologists</a>
+        <a
+          href="#"
+          onclick="
+            event.preventDefault();
+            openModal();
+          "
+          class="btn btn-teal"
+          style="font-size: 0.78rem; padding: 0.52rem 1.25rem"
+          >Contact Us</a
+        >
+      </div>
+      <button
+        class="hamburger"
+        onclick="document.getElementById('mob').classList.toggle('open')"
+        aria-label="Open menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="mob-menu" id="mob">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About Us</a>
+      <div class="mob-sep"></div>
+      <a href="for-radiologists.html" style="color: #00c8b4"
+        >For Radiologists →</a
+      >
+      <a
+        href="#"
+        onclick="
+          event.preventDefault();
+          openModal();
+        "
+        style="
+          color: var(--ink);
+          background: #00c8b4;
+          padding: 0.6rem 1rem;
+          border-radius: var(--r);
+          text-align: center;
+          font-weight: 600;
+          font-family: var(--font-d);
+        "
+        >Contact Us</a
+      >
+    </div>
+
+    <!-- PAGE HEADER -->
+    <div style="padding-top: 68px; background: #0a1520">
+      <div class="page-header">
+        <div class="page-header-inner">
+          <div class="page-breadcrumb">
+            <a href="index.html">Home</a>
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span>Privacy &amp; Terms</span>
+          </div>
+          <h1>Privacy Policy &amp;<br />Terms of Use</h1>
+          <p class="page-desc">
+            How we handle information submitted through this website, and the
+            terms governing your use of it.
+          </p>
+          <p class="page-meta">Hawkeye Physicians PLLC</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAWYER REVIEW BANNER -->
+    <div class="review-banner">
+      <div class="review-banner-inner">
+        <p></p>
+      </div>
+    </div>
+
+    <!-- LEGAL CONTENT -->
+    <section class="legal-section">
+      <div class="legal-layout">
+        <!-- TABLE OF CONTENTS -->
+        <aside class="legal-toc">
+          <div class="legal-toc-label">On This Page</div>
+          <ul>
+            <li><div class="toc-doc-label">Privacy Policy</div></li>
+            <li><a href="#pp-scope">1. Scope of This Policy</a></li>
+            <li><a href="#pp-collect">2. Information We Collect</a></li>
+            <li><a href="#pp-use">3. How We Use Information</a></li>
+            <li><a href="#pp-share">4. How We Share Information</a></li>
+            <li><a href="#pp-cookies">5. Cookies &amp; Analytics</a></li>
+            <li><a href="#pp-retention">6. Data Retention</a></li>
+            <li><a href="#pp-rights">7. Your Rights &amp; Choices</a></li>
+            <li><a href="#pp-security">8. Security</a></li>
+            <li><a href="#pp-hipaa">9. Relationship to HIPAA</a></li>
+            <li><a href="#pp-children">10. Children's Privacy</a></li>
+            <li><a href="#pp-contact">11. Contact Us</a></li>
+            <div class="toc-divider"></div>
+            <li><div class="toc-doc-label">Terms of Use</div></li>
+            <li><a href="#tou-acceptance">1. Acceptance of Terms</a></li>
+            <li><a href="#tou-use">2. Use of This Website</a></li>
+            <li><a href="#tou-ip">3. Intellectual Property</a></li>
+            <li><a href="#tou-disclaimers">4. Disclaimers</a></li>
+            <li><a href="#tou-liability">5. Limitation of Liability</a></li>
+            <li><a href="#tou-links">6. Third-Party Links</a></li>
+            <li><a href="#tou-law">7. Governing Law</a></li>
+            <li><a href="#tou-changes">8. Changes to These Terms</a></li>
+            <li><a href="#tou-contact">9. Contact Us</a></li>
+          </ul>
+        </aside>
+
+        <!-- DOCUMENT BODY -->
+        <div class="legal-content">
+          <!-- ══════ PRIVACY POLICY ══════ -->
+          <div class="legal-doc-title">Privacy Policy</div>
+          <div class="legal-doc-updated">Last updated: September 10, 2026</div>
+
+          <div class="legal-block" id="pp-scope">
+            <h2><span class="legal-block-num">1</span>Scope of This Policy</h2>
+            <p>
+              This Privacy Policy describes how Hawkeye Physicians PLLC
+              ("Hawkeye," "we," "us," or "our") collects, uses, and protects
+              information submitted through this website (the "Site"). It
+              applies to visitors browsing the Site and to individuals who
+              submit information through our contact form or other inquiry
+              channels on the Site.
+            </p>
+            <div class="legal-note">
+              <strong>Note:</strong> This policy covers website visitor data
+              only. It does not govern protected health information (PHI)
+              handled through Hawkeye's clinical teleradiology services — see
+              <a href="#pp-hipaa" class="inline-link">Section 9</a> for how that
+              distinction works.
+            </div>
+          </div>
+
+          <div class="legal-block" id="pp-collect">
+            <h2>
+              <span class="legal-block-num">2</span>Information We Collect
+            </h2>
+            <p>We collect information in the following ways:</p>
+            <ul>
+              <li>
+                <strong>Information you provide directly</strong> — when you
+                submit our contact form, this may include your name, work email
+                address, organization, role, and any details you choose to share
+                about your inquiry.
+              </li>
+              <li>
+                <strong>Information collected automatically</strong> — when you
+                visit the Site, we may automatically collect technical
+                information such as your IP address, browser type, device type,
+                pages viewed, and referring URL, typically through cookies or
+                similar technologies. See
+                <a href="#pp-cookies" class="inline-link">Section 5</a>.
+              </li>
+              <li>
+                <strong>Information from third parties</strong> — No third party
+                information is collected.
+              </li>
+            </ul>
+            <p>
+              We do not collect protected health information (PHI) or any
+              patient data through this Site.
+            </p>
+          </div>
+
+          <div class="legal-block" id="pp-use">
+            <h2>
+              <span class="legal-block-num">3</span>How We Use Information
+            </h2>
+            <p>We use the information we collect to:</p>
+            <ul>
+              <li>
+                Respond to inquiries submitted through the contact form and
+                follow up regarding our services
+              </li>
+              <li>
+                Operate, maintain, and improve the Site's functionality and
+                content
+              </li>
+              <li>
+                Understand how visitors use the Site through aggregated,
+                anonymized analytics
+              </li>
+              <li>
+                Communicate with you about our services, where you have provided
+                consent to do so
+              </li>
+              <li>
+                Comply with legal obligations and protect against fraudulent or
+                unauthorized activity
+              </li>
+            </ul>
+            <p>
+              We do not sell personal information, and we do not use information
+              submitted through this Site for advertising targeting purposes.
+            </p>
+          </div>
+
+          <div class="legal-block" id="pp-share">
+            <h2>
+              <span class="legal-block-num">4</span>How We Share Information
+            </h2>
+            <p>We may share information with:</p>
+            <ul>
+              <li>
+                <strong>Service providers</strong> who perform functions on our
+                behalf, such as website hosting, email delivery, and analytics —
+                bound by confidentiality and data protection obligations
+              </li>
+              <li>
+                <strong>Legal and compliance purposes</strong>, where required
+                to comply with applicable law, regulation, legal process, or
+                governmental request
+              </li>
+              <li>
+                <strong>Business transfers</strong>, in the event of a merger,
+                acquisition, or sale of assets, subject to standard
+                confidentiality protections
+              </li>
+            </ul>
+            <p>
+              We do not sell or rent personal information to third parties for
+              their own marketing purposes.
+            </p>
+          </div>
+
+          <div class="legal-block" id="pp-cookies">
+            <h2>
+              <span class="legal-block-num">5</span>Cookies &amp; Analytics
+            </h2>
+            <p>
+              The Site may use cookies and similar tracking technologies to
+              support core functionality and to understand aggregate visitor
+              behavior.
+            </p>
+            <p>
+              Most browsers allow you to control cookies through their settings.
+              Disabling cookies may affect certain Site features.
+            </p>
+          </div>
+
+          <div class="legal-block" id="pp-retention">
+            <h2><span class="legal-block-num">6</span>Data Retention</h2>
+            <p>
+              We retain information submitted through the contact form for as
+              long as necessary to respond to your inquiry and maintain business
+              records.
+            </p>
+          </div>
+
+          <div class="legal-block" id="pp-rights">
+            <h2>
+              <span class="legal-block-num">7</span>Your Rights &amp; Choices
+            </h2>
+            <p>
+              Depending on your location, you may have rights regarding the
+              personal information we hold about you, which may include the
+              right to access, correct, delete, or restrict our use of your
+              information, and the right to opt out of certain data uses.
+            </p>
+
+            <p>
+              To exercise any applicable rights, contact us using the
+              information in
+              <a href="#pp-contact" class="inline-link">Section 11</a>.
+            </p>
+          </div>
+
+          <div class="legal-block" id="pp-security">
+            <h2><span class="legal-block-num">8</span>Security</h2>
+            <p>
+              We use reasonable administrative, technical, and physical
+              safeguards designed to protect information submitted through the
+              Site from unauthorized access, disclosure, alteration, or
+              destruction. No method of transmission or storage is completely
+              secure, and we cannot guarantee absolute security.
+            </p>
+          </div>
+
+          <div class="legal-block" id="pp-hipaa">
+            <h2><span class="legal-block-num">9</span>Relationship to HIPAA</h2>
+            <p>
+              Hawkeye's clinical teleradiology services involve the handling of
+              protected health information (PHI) and are subject to the Health
+              Insurance Portability and Accountability Act (HIPAA) and related
+              regulations. That clinical data handling is governed by separate
+              agreements with our healthcare facility partners, not by this
+              Site's Privacy Policy.
+            </p>
+            <p>
+              This Site itself is a marketing and informational website. It is
+              not used to transmit, store, or process PHI, and information
+              submitted through the contact form (such as your name and work
+              email) does not constitute PHI under HIPAA.
+            </p>
+          </div>
+
+          <div class="legal-block" id="pp-children">
+            <h2><span class="legal-block-num">10</span>Children's Privacy</h2>
+            <p>
+              This Site is intended for business and healthcare professional
+              audiences and is not directed at children under the age of 13 (or
+              16, where applicable under local law). We do not knowingly collect
+              personal information from children.
+            </p>
+          </div>
+
+          <div class="legal-block" id="pp-contact">
+            <h2><span class="legal-block-num">11</span>Contact Us</h2>
+            <p>
+              Questions about this Privacy Policy, or requests regarding your
+              personal information, can be directed to:
+            </p>
+            <p style="margin-bottom: 0">
+              Hawkeye Physicians PLLC<br />
+              Phone:
+              <a href="tel:5163634896" class="inline-link">516-363-4896</a
+              ><br />
+              Email: connect@hawkeyephysicianspllc.com
+            </p>
+          </div>
+
+          <div class="legal-divider"></div>
+
+          <!-- ══════ TERMS OF USE ══════ -->
+          <div class="legal-doc-title">Terms of Use</div>
+          <div class="legal-doc-updated">Last updated: September 10, 2026</div>
+
+          <div class="legal-block" id="tou-acceptance">
+            <h2><span class="legal-block-num">1</span>Acceptance of Terms</h2>
+            <p>
+              By accessing or using this website (the "Site"), you agree to be
+              bound by these Terms of Use. If you do not agree to these terms,
+              please do not use the Site.
+            </p>
+          </div>
+
+          <div class="legal-block" id="tou-use">
+            <h2><span class="legal-block-num">2</span>Use of This Website</h2>
+            <p>
+              This Site is provided for informational purposes related to
+              Hawkeye Physicians PLLC's teleradiology services. You agree to use
+              the Site only for lawful purposes and agree not to:
+            </p>
+            <ul>
+              <li>
+                Attempt to gain unauthorized access to any portion of the Site
+                or its underlying systems
+              </li>
+              <li>
+                Use any automated means to access or scrape Site content without
+                our prior written consent
+              </li>
+              <li>
+                Interfere with or disrupt the Site's operation or security
+              </li>
+              <li>
+                Submit false or misleading information through any form on the
+                Site
+              </li>
+            </ul>
+          </div>
+
+          <div class="legal-block" id="tou-ip">
+            <h2><span class="legal-block-num">3</span>Intellectual Property</h2>
+            <p>
+              All content on this Site — including text, graphics, logos, and
+              the Hawkeye name and branding — is the property of Hawkeye
+              Physicians PLLC or its licensors and is protected by applicable
+              intellectual property laws. You may not reproduce, distribute, or
+              create derivative works from this content without our prior
+              written permission.
+            </p>
+          </div>
+
+          <div class="legal-block" id="tou-disclaimers">
+            <h2><span class="legal-block-num">4</span>Disclaimers</h2>
+            <p>
+              The content on this Site is provided for general informational
+              purposes only and does not constitute medical advice, a service
+              guarantee, or a binding offer of specific terms. Service level
+              commitments, pricing, and scope of coverage are determined solely
+              through a signed service agreement between Hawkeye and the
+              facility in question.
+            </p>
+            <p>
+              This Site is provided "as is" without warranties of any kind,
+              express or implied, including but not limited to warranties of
+              uninterrupted availability or error-free operation.
+            </p>
+          </div>
+
+          <div class="legal-block" id="tou-liability">
+            <h2>
+              <span class="legal-block-num">5</span>Limitation of Liability
+            </h2>
+            <p>
+              To the fullest extent permitted by applicable law, Hawkeye
+              Physicians PLLC shall not be liable for any indirect, incidental,
+              special, or consequential damages arising out of or related to
+              your use of, or inability to use, this Site.
+            </p>
+          </div>
+
+          <div class="legal-block" id="tou-links">
+            <h2><span class="legal-block-num">6</span>Third-Party Links</h2>
+            <p>
+              This Site may contain links to third-party websites. We do not
+              control and are not responsible for the content, privacy
+              practices, or terms of any third-party site.
+            </p>
+          </div>
+
+          <div class="legal-block" id="tou-law">
+            <h2><span class="legal-block-num">7</span>Governing Law</h2>
+            <p>
+              These Terms of Use are governed by the laws of New York, without
+              regard to its conflict of law principles.
+            </p>
+          </div>
+
+          <div class="legal-block" id="tou-changes">
+            <h2>
+              <span class="legal-block-num">8</span>Changes to These Terms
+            </h2>
+            <p>
+              We may update these Terms of Use from time to time. The "Last
+              updated" date at the top of this document reflects the most recent
+              revision. Continued use of the Site after changes are posted
+              constitutes acceptance of the revised terms.
+            </p>
+          </div>
+
+          <div class="legal-block" id="tou-contact">
+            <h2><span class="legal-block-num">9</span>Contact Us</h2>
+            <p>Questions about these Terms of Use can be directed to:</p>
+            <p style="margin-bottom: 0">
+              Hawkeye Physicians PLLC<br />
+              Phone:
+              <a href="tel:5163634896" class="inline-link">516-363-4896</a
+              ><br />
+              Email: connect@hawkeyephysicianspllc.com
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img
+              src="https://hawkeye.nexcrafters.com/wp-content/uploads/2026/06/Hawkeye-Logo.png"
+              alt="Hawkeye Teleradiology"
+              style="
+                height: 36px;
+                width: auto;
+                margin-bottom: 0.8rem;
+                filter: brightness(0) invert(1);
+              "
+            />
+            <p>
+              Board-certified subspecialty teleradiology for healthcare systems,
+              administrators, and radiologists — delivered with clinical
+              precision and operational reliability.
+            </p>
+            <div class="footer-badges">
+              <span class="badge">HIPAA</span
+              ><span class="badge">24/7/365</span> <span class="badge">ACR</span
+              ><span class="badge">U.S.-Based</span
+              ><span class="badge">SOC 2</span>
+            </div>
+          </div>
+          <div class="fcol">
+            <h4>Platform</h4>
+            <ul>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="services.html#coverage">Coverage Options</a></li>
+            </ul>
+          </div>
+          <div class="fcol">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li>
+                <a
+                  href="#"
+                  onclick="
+                    event.preventDefault();
+                    openModal();
+                  "
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 Hawkeye Physicians PLLC. All rights reserved.</p>
+          <div class="footer-legal-links">
+            <a href="legal.html#pp-scope">Privacy Policy</a>
+            <a href="legal.html#tou-acceptance">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- CONTACT MODAL -->
+    <div class="modal-overlay" id="demoModal">
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
+        <button class="modal-close" onclick="closeModal()" aria-label="Close">
+          <svg viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <h3 id="modal-title">Contact Us</h3>
+        <p class="modal-sub">
+          We'll reach out within 1–2 business days to schedule a 30-minute
+          walkthrough of integration, coverage, and pricing.
+        </p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label
+            ><input type="text" id="fname" placeholder="Marcus" />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label
+            ><input type="text" id="lname" placeholder="Webb" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Work Email</label
+          ><input
+            type="email"
+            id="email"
+            placeholder="you@hospitalnetwork.org"
+          />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="org">Organization</label
+            ><input type="text" id="org" placeholder="Memorial West Health" />
+          </div>
+          <div class="form-group">
+            <label for="role">Your Role</label>
+            <select id="role">
+              <option value="" disabled selected>Select role</option>
+              <option>CMO / Chief Medical Officer</option>
+              <option>VP / Director of Radiology</option>
+              <option>Radiology Administrator</option>
+              <option>Hospital Administrator</option>
+              <option>Radiologist</option>
+              <option>IT / Informatics</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="need">Primary Need</label>
+          <select id="need">
+            <option value="" disabled selected>What brings you here?</option>
+            <option>Overnight / weekend coverage gap</option>
+            <option>Surge / volume overflow</option>
+            <option>Subspecialty reads I can't staff</option>
+            <option>Replacing a current teleradiology vendor</option>
+            <option>Evaluating options — no urgent need</option>
+            <option>Radiologist — joining the network</option>
+          </select>
+        </div>
+        <button
+          class="btn btn-teal"
+          style="
+            width: 100%;
+            justify-content: center;
+            margin-top: 0.5rem;
+            color: var(--ink);
+          "
+          onclick="submitDemo()"
+        >
+          Send Message
+        </button>
+        <div
+          style="
+            text-align: center;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(200, 216, 232, 0.1);
+          "
+        >
+          <p
+            style="
+              font-size: 0.78rem;
+              color: rgba(200, 216, 232, 0.3);
+              font-family: var(--font-d);
+            "
+          >
+            Prefer to call?
+            <a
+              href="tel:5163634896"
+              style="color: #00c8b4; font-weight: 600; transition: opacity 0.2s"
+              onmouseover="this.style.opacity = '.75'"
+              onmouseout="this.style.opacity = '1'"
+              >516-363-4896</a
+            >
+          </p>
+        </div>
+        <p class="form-note">
+          HIPAA-compliant. Your information is never shared or sold.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // NAV scroll
+      window.addEventListener("scroll", function () {
+        var nav = document.getElementById("mainnav");
+        if (window.scrollY > 80) {
+          nav.style.background = "rgba(13,27,42,.98)";
+          nav.classList.add("scrolled");
+        } else {
+          nav.style.background = "rgba(13,27,42,.95)";
+          nav.classList.remove("scrolled");
+        }
+      });
+
+      // Modal
+      function openModal() {
+        document.getElementById("demoModal").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeModal() {
+        document.getElementById("demoModal").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      document
+        .getElementById("demoModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeModal();
+        });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeModal();
+      });
+      function submitDemo() {
+        var btn = document.querySelector("#demoModal .btn-teal");
+        btn.innerHTML = "✓ &nbsp; Message received — we'll be in touch shortly";
+        btn.style.background = "#1A7A4A";
+        btn.onclick = null;
+        setTimeout(function () {
+          closeModal();
+          btn.innerHTML = "Send Message";
+          btn.style.background = "";
+          btn.onclick = submitDemo;
+        }, 3200);
+      }
+    </script>
+  </body>
+</html>

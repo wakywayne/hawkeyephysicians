@@ -1,0 +1,1790 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services — Hawkeye Teleradiology</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ── RESET ── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        background: #0d1b2a;
+        color: #c8d8e8;
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* ── TOKENS ── */
+      :root {
+        --pg: #0d1b2a;
+        --pg-alt: #111e2e;
+        --pg-deep: #0a1520;
+        --card: rgba(255, 255, 255, 0.04);
+        --ink: #0d1b2a;
+        --body: rgba(200, 216, 232, 0.7);
+        --muted: rgba(200, 216, 232, 0.5);
+        --muted2: rgba(200, 216, 232, 0.3);
+        --teal: #00c8b4;
+        --teal-l: rgba(0, 200, 180, 0.08);
+        --teal-m: rgba(0, 200, 180, 0.15);
+        --teal-b: rgba(0, 200, 180, 0.25);
+        --teal-d: #009e8c;
+        --border: rgba(200, 216, 232, 0.1);
+        --border-s: rgba(200, 216, 232, 0.07);
+        --r: 6px;
+        --rl: 12px;
+        --max: 1160px;
+        --pad: clamp(1.25rem, 5vw, 4rem);
+      }
+
+      /* ── GLOBAL TYPE ── */
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-d);
+        color: #fff;
+        letter-spacing: -0.025em;
+      }
+      h1 {
+        font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+        font-weight: 700;
+        line-height: 1.06;
+      }
+      h2 {
+        font-size: clamp(1.75rem, 3.3vw, 2.6rem);
+        font-weight: 700;
+        line-height: 1.1;
+      }
+      h3 {
+        font-size: 1.02rem;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+      p {
+        color: var(--body);
+        font-family: var(--font-b);
+      }
+      em.teal {
+        font-style: normal;
+        color: var(--teal);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-d);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 1rem;
+      }
+      .eyebrow::before {
+        content: "";
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--teal);
+        flex-shrink: 0;
+      }
+
+      /* ── BUTTONS ── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-family: var(--font-d);
+        font-size: 0.88rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        padding: 0.82rem 1.85rem;
+        border-radius: var(--r);
+        transition: all 0.2s;
+        white-space: nowrap;
+        cursor: pointer;
+        border: none;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+      .btn-teal {
+        background: var(--teal);
+        color: var(--ink);
+      }
+      .btn-teal:hover {
+        background: var(--teal-d);
+        opacity: 1;
+      }
+      .btn-outline {
+        background: transparent;
+        color: #fff;
+        border: 1.5px solid var(--border);
+        transition:
+          border-color 0.2s,
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-outline:hover {
+        border-color: var(--teal);
+        background: var(--teal-l);
+        opacity: 1;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 300;
+        height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 var(--pad);
+        background: rgba(13, 27, 42, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition:
+          background 0.3s,
+          box-shadow 0.3s;
+      }
+      nav.scrolled {
+        background: rgba(13, 27, 42, 0.98);
+        box-shadow: 0 1px 28px rgba(0, 0, 0, 0.3);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-family: var(--font-d);
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+        transition: color 0.2s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #fff;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .nav-pill {
+        font-family: var(--font-d);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--teal);
+        border: 1px solid var(--teal-b);
+        padding: 0.35rem 0.85rem;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .nav-pill:hover {
+        background: var(--teal-l);
+        border-color: var(--teal);
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 6px;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+      .hamburger span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: #fff;
+        border-radius: 2px;
+      }
+      .mob-menu {
+        display: none;
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: rgba(13, 27, 42, 0.97);
+        border-bottom: 1px solid var(--border);
+        padding: 1.5rem var(--pad);
+        z-index: 299;
+        flex-direction: column;
+        gap: 1rem;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+      .mob-menu.open {
+        display: flex;
+      }
+      .mob-menu a {
+        font-family: var(--font-d);
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+      }
+      .mob-menu a:hover {
+        color: #fff;
+      }
+      .mob-sep {
+        height: 0.5px;
+        background: var(--border);
+        margin: 0.25rem 0;
+      }
+
+      /* ── PAGE HEADER (subpage style) ── */
+      .page-header {
+        padding: 3rem var(--pad) 2.5rem;
+        background: var(--pg-deep);
+        border-bottom: 1px solid var(--border);
+      }
+      .page-header-inner {
+        max-width: 780px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .page-breadcrumb {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-d);
+        font-size: 0.72rem;
+        font-weight: 500;
+        color: var(--muted);
+        margin-bottom: 1.25rem;
+      }
+      .page-breadcrumb a {
+        color: var(--muted);
+        transition: color 0.2s;
+      }
+      .page-breadcrumb a:hover {
+        color: var(--teal);
+      }
+      .page-breadcrumb span {
+        color: var(--teal);
+      }
+      .page-header h1 {
+        font-size: clamp(2.4rem, 4vw, 3.4rem);
+        line-height: 1.08;
+        margin-bottom: 1.1rem;
+      }
+      .page-header .page-desc {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: var(--muted);
+        max-width: 560px;
+        margin: 0 auto 1.75rem;
+      }
+      .header-ctas {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+      .trust-chips {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .trust-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--font-d);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 0.32rem 0.85rem;
+      }
+      .trust-chip svg {
+        width: 11px;
+        height: 11px;
+        stroke: var(--teal);
+        fill: none;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex-shrink: 0;
+      }
+
+      /* ── COVERAGE SCENARIOS ── */
+      .coverage-section {
+        background: var(--pg-alt);
+        padding: 6rem var(--pad);
+        border-bottom: 1px solid var(--border);
+      }
+      .coverage-head {
+        max-width: 600px;
+        margin: 0 auto 2.75rem;
+        text-align: center;
+      }
+      .coverage-head p {
+        margin-top: 0.6rem;
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+      .coverage-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+      .cov-row-top {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.1rem;
+        max-width: calc(66.666% - 0.37rem);
+        margin: 0 auto;
+        width: 100%;
+      }
+      .cov-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--border);
+        border-radius: var(--rl);
+        padding: 1.6rem 1.3rem;
+        position: relative;
+        transition:
+          background 0.22s,
+          border-color 0.22s,
+          transform 0.22s;
+      }
+      .cov-card:hover {
+        background: rgba(255, 255, 255, 0.07);
+        border-color: rgba(0, 200, 180, 0.3);
+        transform: translateY(-2px);
+      }
+      .cov-icon {
+        width: 38px;
+        height: 38px;
+        border: 1px solid rgba(0, 200, 180, 0.2);
+        border-radius: var(--r);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.9rem;
+        background: rgba(0, 200, 180, 0.07);
+      }
+      .cov-icon svg {
+        width: 18px;
+        height: 18px;
+        stroke: var(--teal);
+        fill: none;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .cov-sla {
+        font-family: var(--font-d);
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 0.4rem;
+        display: block;
+      }
+      .cov-card h3 {
+        font-size: 0.94rem;
+        margin-bottom: 0.55rem;
+        color: #fff;
+      }
+      .cov-card p {
+        font-size: 0.81rem;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      /* ── MODEL SECTION ── */
+      .model-section {
+        background: var(--ink);
+        padding: 6rem var(--pad);
+        position: relative;
+        overflow: hidden;
+      }
+      .model-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .model-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.52) saturate(1);
+      }
+      .model-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(6, 20, 18, 0.65);
+      }
+      .model-head {
+        max-width: 640px;
+        margin: 0 auto 3rem;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      .model-head .eyebrow {
+        justify-content: center;
+        color: var(--teal);
+      }
+      .model-head .eyebrow::before {
+        background: var(--teal);
+      }
+      .model-head h2 {
+        color: #fff;
+      }
+      .model-head p {
+        margin-top: 0.75rem;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .model-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        max-width: var(--max);
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .model-card {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--rl);
+        padding: 2rem 1.75rem;
+        transition:
+          background 0.22s,
+          border-color 0.22s;
+      }
+      .model-card:hover {
+        background: rgba(0, 0, 0, 0.45);
+        border-color: rgba(0, 200, 180, 0.35);
+      }
+      .model-num {
+        font-family: var(--font-d);
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 0.9rem;
+        display: block;
+      }
+      .model-card h3 {
+        font-size: 1.02rem;
+        margin-bottom: 0.65rem;
+        color: #fff;
+      }
+      .model-card p {
+        font-size: 0.86rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      /* ── FEATURE ROWS ── */
+      .feature-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        min-height: 420px;
+      }
+      .feature-row.reverse {
+        direction: rtl;
+      }
+      .feature-row.reverse > * {
+        direction: ltr;
+      }
+      .feature-img {
+        overflow: hidden;
+        position: relative;
+        min-height: 360px;
+      }
+      .feature-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.72) saturate(1.05);
+        display: block;
+      }
+      .feature-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4rem clamp(2.5rem, 5vw, 5rem);
+        background: #111e2e;
+      }
+      .feature-row.reverse .feature-content {
+        background: #0d1b2a;
+      }
+      .feature-content .eyebrow {
+        margin-bottom: 0.85rem;
+      }
+      .feature-content h2 {
+        font-size: clamp(1.5rem, 2.4vw, 2rem);
+        margin-bottom: 0.85rem;
+        line-height: 1.18;
+      }
+      .feature-content .feature-lead {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: var(--muted);
+        margin-bottom: 1.3rem;
+        max-width: 440px;
+      }
+      .feature-list {
+        list-style: none;
+        margin-bottom: 1rem;
+      }
+      .feature-list li {
+        font-size: 0.86rem;
+        color: var(--muted);
+        padding: 0.42rem 0 0.42rem 1.2rem;
+        border-bottom: 0.5px solid var(--border-s);
+        line-height: 1.55;
+        position: relative;
+      }
+      .feature-list li:last-child {
+        border-bottom: none;
+      }
+      .feature-list li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--teal);
+        font-size: 0.74rem;
+      }
+
+      /* ── SLA / COMPARISON TABLE ── */
+      .comp-section {
+        background: #0a1520;
+        padding: 6rem var(--pad);
+      }
+      .comp-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 5rem;
+        align-items: start;
+      }
+      .comp-inner p {
+        margin-top: 0.85rem;
+        font-size: 0.94rem;
+        max-width: 300px;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+      .comp-table {
+        border: 1px solid var(--border);
+        border-radius: var(--rl);
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .comp-row {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1fr;
+        border-bottom: 0.5px solid var(--border);
+      }
+      .comp-row:last-child {
+        border-bottom: none;
+      }
+      .comp-row.comp-header {
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .comp-cell {
+        padding: 0.9rem 1.1rem;
+        font-size: 0.83rem;
+        border-right: 0.5px solid var(--border);
+      }
+      .comp-cell:last-child {
+        border-right: none;
+      }
+      .comp-cell.label {
+        color: var(--muted);
+      }
+      .comp-cell.header-cell {
+        font-family: var(--font-d);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .comp-cell.header-cell.ours {
+        color: var(--teal);
+      }
+      .comp-cell.ours-val {
+        font-family: var(--font-d);
+        font-size: 0.83rem;
+        color: #fff;
+        font-weight: 600;
+      }
+      .comp-cell.other-val {
+        color: var(--muted);
+      }
+
+      /* ── FINAL CTA ── */
+      .serv-final {
+        background: var(--ink);
+        padding: 7rem var(--pad);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .serv-final-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.5) saturate(1);
+      }
+      .serv-final-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .serv-final h2 {
+        font-size: clamp(2rem, 3.5vw, 2.8rem);
+        color: #fff;
+        margin-bottom: 0.85rem;
+      }
+      .serv-final p {
+        max-width: 460px;
+        margin: 0 auto 2.2rem;
+        font-size: 0.97rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: #060d16;
+        border-top: 1px solid rgba(200, 216, 232, 0.1);
+        padding: 4rem var(--pad) 2.5rem;
+      }
+      .footer-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+      .footer-brand p {
+        font-size: 0.82rem;
+        max-width: 240px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .footer-badges {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        margin-top: 0.8rem;
+      }
+      .badge {
+        font-family: var(--font-d);
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        border: 0.5px solid rgba(255, 255, 255, 0.15);
+        border-radius: 4px;
+        padding: 3px 7px;
+      }
+      .fcol h4 {
+        font-family: var(--font-d);
+        font-size: 0.63rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: 0.85rem;
+      }
+      .fcol ul {
+        list-style: none;
+      }
+      .fcol li {
+        margin-bottom: 0.5rem;
+      }
+      .fcol a {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.45);
+        transition: color 0.2s;
+      }
+      .fcol a:hover {
+        color: #fff;
+      }
+      .footer-bottom {
+        border-top: 0.5px solid rgba(255, 255, 255, 0.07);
+        padding-top: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .footer-bottom p {
+        font-size: 0.73rem;
+        color: rgba(255, 255, 255, 0.3);
+      }
+      .footer-legal-links {
+        display: flex;
+        gap: 1.1rem;
+      }
+      .footer-legal-links a {
+        font-size: 0.73rem;
+        color: rgba(255, 255, 255, 0.4);
+        transition: color 0.2s;
+      }
+      .footer-legal-links a:hover {
+        color: #fff;
+      }
+
+      /* ── MODAL ── */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 500;
+        background: rgba(6, 12, 22, 0.85);
+        backdrop-filter: blur(12px);
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .modal {
+        background: #111e2e;
+        border: 1px solid var(--border);
+        border-radius: var(--rl);
+        padding: 2.5rem;
+        width: 100%;
+        max-width: 500px;
+        position: relative;
+        animation: modalIn 0.25s ease;
+      }
+      @keyframes modalIn {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .modal-close {
+        position: absolute;
+        top: 1.1rem;
+        right: 1.1rem;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .modal-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .modal-close svg {
+        width: 12px;
+        height: 12px;
+        stroke: var(--muted);
+        fill: none;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+      }
+      .modal h3 {
+        font-size: 1.35rem;
+        margin-bottom: 0.4rem;
+        color: #fff;
+      }
+      .modal-sub {
+        font-size: 0.87rem;
+        color: var(--muted);
+        margin-bottom: 1.75rem;
+        line-height: 1.6;
+      }
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      .form-group label {
+        display: block;
+        font-family: var(--font-d);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.4rem;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 0.72rem 0.95rem;
+        font-family: var(--font-b);
+        font-size: 0.88rem;
+        color: #fff;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--teal);
+      }
+      .form-group select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7F94' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.9rem center;
+        padding-right: 2.2rem;
+        cursor: pointer;
+      }
+      .form-group select option {
+        background: #111e2e;
+        color: #fff;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.85rem;
+      }
+      .form-note {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-top: 1.1rem;
+        text-align: center;
+        line-height: 1.5;
+      }
+
+      /* ── SCROLL REVEAL ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1024px) {
+        .cov-row-top {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cov-row-bottom {
+          max-width: calc(50% - 0.275rem);
+        }
+        .model-grid {
+          grid-template-columns: 1fr;
+        }
+        .feature-row {
+          grid-template-columns: 1fr;
+        }
+        .feature-row.reverse {
+          direction: ltr;
+        }
+        .feature-img {
+          min-height: 300px;
+        }
+        .comp-inner {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 768px) {
+        .nav-links,
+        .nav-right .btn,
+        .nav-pill {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .cov-row-top {
+          grid-template-columns: 1fr;
+        }
+        .cov-row-bottom {
+          grid-template-columns: 1fr;
+          max-width: 100%;
+        }
+        .comp-row {
+          grid-template-columns: 1fr 1fr;
+        }
+        .comp-cell {
+          padding: 0.75rem 0.7rem;
+          font-size: 0.79rem;
+        }
+        .comp-cell.other-val,
+        .comp-cell.header-cell:last-child {
+          display: none;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .trust-chips {
+          gap: 0.4rem;
+        }
+      }
+      @media (max-width: 560px) {
+        h1 {
+          font-size: 2.2rem;
+        }
+        h2 {
+          font-size: 1.6rem;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav id="mainnav">
+      <a href="index.html">
+        <img
+          src="https://hawkeye.nexcrafters.com/wp-content/uploads/2026/06/Hawkeye-Logo.png"
+          alt="Hawkeye Teleradiology"
+          style="
+            height: 38px;
+            width: auto;
+            display: block;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+          "
+        />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="for-radiologists.html" class="nav-pill">For Radiologists</a>
+        <a
+          href="#"
+          onclick="
+            event.preventDefault();
+            openModal();
+          "
+          class="btn btn-teal"
+          style="font-size: 0.78rem; padding: 0.52rem 1.25rem"
+          >Contact Us</a
+        >
+      </div>
+      <button
+        class="hamburger"
+        onclick="document.getElementById('mob').classList.toggle('open')"
+        aria-label="Open menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="mob-menu" id="mob">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About Us</a>
+      <div class="mob-sep"></div>
+      <a href="for-radiologists.html" style="color: var(--teal)"
+        >For Radiologists — Join Our Network →</a
+      >
+      <a
+        href="#"
+        onclick="
+          event.preventDefault();
+          openModal();
+        "
+        style="
+          color: #fff;
+          background: var(--teal);
+          padding: 0.6rem 1rem;
+          border-radius: var(--r);
+          text-align: center;
+          font-weight: 600;
+          font-family: var(--font-d);
+        "
+        >Contact Us</a
+      >
+    </div>
+
+    <!-- PAGE HEADER -->
+    <div style="padding-top: 68px">
+      <div class="page-header">
+        <div class="page-header-inner">
+          <div class="page-breadcrumb">
+            <a href="index.html">Home</a>
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span>Services</span>
+          </div>
+          <h1>
+            Emergency radiology<br />coverage,
+            <em class="teal">when you need it.</em>
+          </h1>
+          <p class="page-desc">
+            Full-service teleradiology built around the moments hospitals are
+            most exposed — overnight, weekends, holidays — read exclusively by
+            board-certified, fellowship-trained subspecialists.
+          </p>
+          <div class="header-ctas">
+            <a
+              href="#"
+              onclick="
+                event.preventDefault();
+                openModal();
+              "
+              class="btn btn-teal"
+              >Talk to Our Team</a
+            >
+            <a href="#coverage" class="btn btn-outline">See Coverage Options</a>
+          </div>
+          <div class="trust-chips">
+            <span class="trust-chip"
+              ><svg viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" /></svg
+              >20–30 Min STAT SLA</span
+            >
+            <span class="trust-chip"
+              ><svg viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" /></svg
+              >24/7/365 Coverage</span
+            >
+            <span class="trust-chip"
+              ><svg viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" /></svg
+              >Board-Certified Only</span
+            >
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: 0;
+              justify-content: center;
+              margin-top: 1.75rem;
+              border-top: 1px solid var(--border);
+              padding-top: 1.5rem;
+              max-width: 500px;
+              margin-left: auto;
+              margin-right: auto;
+            "
+          >
+            <div
+              style="
+                flex: 1;
+                text-align: center;
+                padding-right: 1.5rem;
+                border-right: 1px solid var(--border);
+              "
+            >
+              <div
+                style="
+                  font-family: var(--font-d);
+                  font-size: 1.8rem;
+                  font-weight: 700;
+                  color: var(--teal);
+                  letter-spacing: -0.04em;
+                  line-height: 1;
+                "
+              >
+                30+
+              </div>
+              <div
+                style="
+                  font-family: var(--font-d);
+                  font-size: 0.62rem;
+                  font-weight: 600;
+                  text-transform: uppercase;
+                  letter-spacing: 0.1em;
+                  color: var(--muted);
+                  margin-top: 0.3rem;
+                "
+              >
+                Partner Facilities
+              </div>
+            </div>
+            <div
+              style="
+                flex: 1;
+                text-align: center;
+                padding: 0 1.5rem;
+                border-right: 1px solid var(--border);
+              "
+            >
+              <div
+                style="
+                  font-family: var(--font-d);
+                  font-size: 1.8rem;
+                  font-weight: 700;
+                  color: var(--teal);
+                  letter-spacing: -0.04em;
+                  line-height: 1;
+                "
+              >
+                12+
+              </div>
+              <div
+                style="
+                  font-family: var(--font-d);
+                  font-size: 0.62rem;
+                  font-weight: 600;
+                  text-transform: uppercase;
+                  letter-spacing: 0.1em;
+                  color: var(--muted);
+                  margin-top: 0.3rem;
+                "
+              >
+                Subspecialties
+              </div>
+            </div>
+            <div style="flex: 1; text-align: center; padding-left: 1.5rem">
+              <div
+                style="
+                  font-family: var(--font-d);
+                  font-size: 1.8rem;
+                  font-weight: 700;
+                  color: var(--teal);
+                  letter-spacing: -0.04em;
+                  line-height: 1;
+                "
+              >
+                6<span style="font-size: 1rem">wk</span>
+              </div>
+              <div
+                style="
+                  font-family: var(--font-d);
+                  font-size: 0.62rem;
+                  font-weight: 600;
+                  text-transform: uppercase;
+                  letter-spacing: 0.1em;
+                  color: var(--muted);
+                  margin-top: 0.3rem;
+                "
+              >
+                Avg. Go-Live
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full-width header photo -->
+      <div
+        style="width: 100%; height: 340px; overflow: hidden; position: relative"
+      >
+        <img
+          src="https://images.pexels.com/photos/5452193/pexels-photo-5452193.jpeg?auto=compress&cs=tinysrgb&w=1600&h=640&fit=crop"
+          alt="Team of physicians in diagnostic discussion"
+          style="
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 35%;
+            filter: brightness(0.88) saturate(1.15);
+            display: block;
+          "
+          loading="eager"
+        />
+        <div
+          style="
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+              to bottom,
+              rgba(10, 21, 32, 0.4) 0%,
+              transparent 30%,
+              rgba(17, 30, 46, 0.65) 100%
+            );
+          "
+        ></div>
+      </div>
+    </div>
+
+    <!-- COVERAGE SCENARIOS -->
+    <section class="coverage-section" id="coverage">
+      <div class="coverage-head">
+        <div class="eyebrow" style="justify-content: center">
+          Coverage Built Around Exposure
+        </div>
+        <h2>Ways hospitals rely on us.</h2>
+        <p>
+          Coverage isn't one-size-fits-all. We structure service around your
+          specific gaps.
+        </p>
+      </div>
+      <div class="coverage-grid">
+        <div class="cov-row-top">
+          <div class="cov-card reveal">
+            <div class="cov-icon">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <span class="cov-sla">20–30 Min SLA</span>
+            <h3>STAT Reads</h3>
+            <p>
+              Emergent studies routed and read on a contractual turnaround —
+              stroke, trauma, and other time-critical cases never wait in a
+              generic queue.
+            </p>
+          </div>
+          <div class="cov-card reveal reveal-delay-1">
+            <div class="cov-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <span class="cov-sla">Nights &amp; Weekends</span>
+            <h3>Overnight Coverage</h3>
+            <p>
+              Full evening, overnight, and weekend coverage so your in-house
+              radiologists aren't carrying every shift — without locums costs or
+              burnout risk.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE MODEL -->
+    <section class="model-section">
+      <div class="model-bg">
+        <img
+          src="https://images.pexels.com/photos/7088524/pexels-photo-7088524.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop"
+          alt=""
+        />
+      </div>
+      <div class="model-head">
+        <div class="eyebrow">How We're Built Differently</div>
+        <h2>A direct model, not a layered one.</h2>
+        <p>
+          Most teleradiology runs through a chain of intermediaries that adds
+          cost and distance between you and the radiologist reading your case.
+        </p>
+      </div>
+      <div class="model-grid">
+        <!-- <div class="model-card reveal">
+          <span class="model-num">Direct, Not Brokered</span>
+          <h3>No agency standing in the middle.</h3>
+          <p>
+            You contract with Hawkeye, a network of subcontracted radiologists.
+            That means a shorter chain of accountability, and a radiologist
+            incentivized to deliver accurate, well-supported reads — not just
+            clear volume.
+          </p>
+        </div> -->
+        <div class="model-card reveal reveal-delay-1">
+          <span class="model-num">Built On Modern Tools</span>
+          <h3>AI-assisted, cloud-based, location-free.</h3>
+          <p>
+            Our radiologists aren't tied to a single workstation behind hospital
+            walls. Cloud-based viewing and AI-assisted reading tools let
+            subspecialists work securely from wherever they're scheduled.
+          </p>
+        </div>
+        <div class="model-card reveal reveal-delay-2">
+          <span class="model-num">What It Means For You</span>
+          <h3>Less overhead, more reliability.</h3>
+          <p>
+            Fewer intermediaries and modern infrastructure translate into a
+            model your organization can actually run on: predictable coverage,
+            straightforward contracting, and a partner that's structured to
+            scale with you rather than around you.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE ROWS: Platform + Integration -->
+    <div>
+      <div class="feature-row">
+        <div class="feature-content">
+          <div class="eyebrow">The Platform</div>
+          <h2>Connects to what you already run.</h2>
+          <p class="feature-lead">
+            No new hardware, no retraining your technologists. We integrate
+            directly with your existing PACS and EMR, with HL7/FHIR connectivity
+            and DICOM-standard image transfer.
+          </p>
+          <ul class="feature-list">
+            <li>
+              Direct PACS integration — your techs upload exactly as they always
+              have
+            </li>
+            <li>
+              HL7 FHIR connectivity for orders, results, and reporting workflows
+            </li>
+            <li>
+              Cloud-based diagnostic viewer — no install required on your end
+            </li>
+          </ul>
+        </div>
+        <div class="feature-img">
+          <img
+            src="https://images.pexels.com/photos/7089630/pexels-photo-7089630.jpeg?auto=compress&cs=tinysrgb&w=900&h=1040&fit=crop"
+            alt="Radiologist at CT scanner workstation reviewing scans"
+          />
+        </div>
+      </div>
+
+      <div class="feature-row reverse">
+        <div class="feature-content">
+          <div class="eyebrow">Getting Started</div>
+          <h2>One vendor. One contract. One point of contact.</h2>
+          <p class="feature-lead">
+            Whether you're closing a single overnight gap or replacing multiple
+            existing vendors, you work with one team from integration through
+            your first read — and every read after.
+          </p>
+          <ul class="feature-list">
+            <li>Coverage modeled around your actual case mix and peak hours</li>
+            <li>
+              Single invoice across every site, shift type, and subspecialty
+            </li>
+            <li>
+              HIPAA-compliant data handling and SOC 2-aligned security practices
+            </li>
+            <li>
+              Direct line to Hawkeye leadership — not a call center or ticketing
+              system
+            </li>
+          </ul>
+        </div>
+        <div class="feature-img">
+          <img
+            src="https://images.pexels.com/photos/8376228/pexels-photo-8376228.jpeg?auto=compress&cs=tinysrgb&w=900&h=1040&fit=crop"
+            alt="Healthcare administrator reviewing reports at laptop"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- SLA COMPARISON -->
+    <div class="comp-section">
+      <div class="comp-inner">
+        <div>
+          <div class="eyebrow">Service Levels</div>
+          <h2>SLAs that are<br />contractual, not aspirational.</h2>
+          <p>
+            Turnaround commitments by acuity tier — built into the agreement,
+            not a marketing number.
+          </p>
+        </div>
+        <div class="comp-table">
+          <div class="comp-row comp-header">
+            <div class="comp-cell header-cell">Acuity Tier</div>
+            <div class="comp-cell header-cell ours">Target Turnaround</div>
+            <div class="comp-cell header-cell">Typical Use Case</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-cell label">Stroke / Trauma</div>
+            <div class="comp-cell ours-val">20 minutes</div>
+            <div class="comp-cell other-val">
+              Stroke, trauma, acute emergent findings
+            </div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-cell label">Stat</div>
+            <div class="comp-cell ours-val">45 minutes</div>
+            <div class="comp-cell other-val">
+              ED workups, inpatient priority studies
+            </div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-cell label">Routine</div>
+            <div class="comp-cell ours-val">Within 24 hours</div>
+            <div class="comp-cell other-val">
+              Outpatient and scheduled diagnostic studies
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINAL CTA -->
+    <div class="serv-final">
+      <img
+        class="serv-final-bg"
+        src="https://images.pexels.com/photos/15277956/pexels-photo-15277956.jpeg?auto=compress&cs=tinysrgb&w=1600&h=800&fit=crop"
+        alt=""
+      />
+      <div class="serv-final-inner">
+        <div
+          class="eyebrow"
+          style="
+            justify-content: center;
+            color: #00c8b4;
+            margin-bottom: 1.25rem;
+          "
+        >
+          Ready to talk coverage?
+        </div>
+        <h2>Let's find the right<br />fit for your facility.</h2>
+        <p>
+          Tell us about your coverage gaps and case mix. We'll walk you through
+          exactly what service scope and pricing would look like — no pressure,
+          no jargon.
+        </p>
+        <div
+          style="
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <a
+            href="#"
+            onclick="
+              event.preventDefault();
+              openModal();
+            "
+            class="btn btn-teal"
+            >Talk to Our Team</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img
+              src="https://hawkeye.nexcrafters.com/wp-content/uploads/2026/06/Hawkeye-Logo.png"
+              alt="Hawkeye Teleradiology"
+              style="
+                height: 36px;
+                width: auto;
+                margin-bottom: 0.8rem;
+                filter: brightness(0) invert(1);
+              "
+            />
+            <p>
+              Board-certified subspecialty teleradiology for healthcare systems,
+              administrators, and radiologists — delivered with clinical
+              precision and operational reliability.
+            </p>
+            <div class="footer-badges">
+              <span class="badge">HIPAA</span
+              ><span class="badge">24/7/365</span>
+              <span class="badge">U.S.-Based</span
+              ><span class="badge">SOC 2</span>
+            </div>
+          </div>
+          <div class="fcol">
+            <h4>Platform</h4>
+            <ul>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="services.html#coverage">Coverage Options</a></li>
+            </ul>
+          </div>
+          <div class="fcol">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li>
+                <a
+                  href="#"
+                  onclick="
+                    event.preventDefault();
+                    openModal();
+                  "
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 Hawkeye Physicians PLLC. All rights reserved.</p>
+          <div class="footer-legal-links">
+            <a href="legal.html#pp-scope">Privacy Policy</a>
+            <a href="legal.html#tou-acceptance">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- CONTACT MODAL -->
+    <div class="modal-overlay" id="demoModal">
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
+        <button class="modal-close" onclick="closeModal()" aria-label="Close">
+          <svg viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <h3 id="modal-title">Contact Us</h3>
+        <p class="modal-sub">
+          We'll reach out within 1–2 business days to schedule a 30-minute
+          walkthrough of integration, coverage, and pricing.
+        </p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label
+            ><input type="text" id="fname" placeholder="Marcus" />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label
+            ><input type="text" id="lname" placeholder="Webb" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Work Email</label
+          ><input
+            type="email"
+            id="email"
+            placeholder="you@hospitalnetwork.org"
+          />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="org">Organization</label
+            ><input type="text" id="org" placeholder="Memorial West Health" />
+          </div>
+          <div class="form-group">
+            <label for="role">Your Role</label>
+            <select id="role">
+              <option value="" disabled selected>Select role</option>
+              <option>CMO / Chief Medical Officer</option>
+              <option>VP / Director of Radiology</option>
+              <option>Radiology Administrator</option>
+              <option>Hospital Administrator</option>
+              <option>Radiologist</option>
+              <option>IT / Informatics</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="need">Primary Need</label>
+          <select id="need">
+            <option value="" disabled selected>What brings you here?</option>
+            <option>Overnight / weekend coverage gap</option>
+            <option>Surge / volume overflow</option>
+            <option>Subspecialty reads I can't staff</option>
+            <option>Replacing a current teleradiology vendor</option>
+            <option>Evaluating options — no urgent need</option>
+            <option>Radiologist — joining the network</option>
+          </select>
+        </div>
+        <button
+          class="btn btn-teal"
+          style="
+            width: 100%;
+            justify-content: center;
+            margin-top: 0.5rem;
+            color: var(--ink);
+          "
+          onclick="submitDemo()"
+        >
+          Send Message
+        </button>
+        <div
+          style="
+            text-align: center;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+          "
+        >
+          <p
+            style="
+              font-size: 0.78rem;
+              color: var(--muted2);
+              font-family: var(--fd);
+            "
+          >
+            Prefer to call?
+            <a
+              href="tel:5163634896"
+              style="
+                color: var(--teal);
+                font-weight: 600;
+                transition: opacity 0.2s;
+              "
+              onmouseover="this.style.opacity = '.75'"
+              onmouseout="this.style.opacity = '1'"
+              >516-363-4896</a
+            >
+          </p>
+        </div>
+        <p class="form-note">
+          HIPAA-compliant. Your information is never shared or sold.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // NAV scroll
+      window.addEventListener("scroll", function () {
+        var nav = document.getElementById("mainnav");
+        if (window.scrollY > 80) {
+          nav.style.background = "rgba(13,27,42,.98)";
+          nav.classList.add("scrolled");
+        } else {
+          nav.style.background = "rgba(13,27,42,.95)";
+          nav.classList.remove("scrolled");
+        }
+      });
+
+      // Modal
+      function openModal() {
+        document.getElementById("demoModal").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeModal() {
+        document.getElementById("demoModal").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      document
+        .getElementById("demoModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeModal();
+        });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeModal();
+      });
+      function submitDemo() {
+        var btn = document.querySelector("#demoModal .btn-teal");
+        btn.innerHTML = "✓ &nbsp; Message received — we'll be in touch shortly";
+        btn.style.background = "#1A7A4A";
+        btn.onclick = null;
+        setTimeout(function () {
+          closeModal();
+          btn.innerHTML = "Send Message";
+          btn.style.background = "";
+          btn.onclick = submitDemo;
+        }, 3200);
+      }
+
+      // Wire Contact Us buttons to modal
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('a[href="#"], button').forEach(function (el) {
+          var txt = el.textContent.trim().toLowerCase();
+          if (txt.includes("contact us") || txt.includes("send message")) {
+            el.addEventListener("click", function (e) {
+              e.preventDefault();
+              openModal();
+            });
+          }
+        });
+      });
+
+      // Scroll reveal
+      function revealOnScroll() {
+        var reveals = document.querySelectorAll(".reveal");
+        var wh = window.innerHeight;
+        reveals.forEach(function (el) {
+          if (el.getBoundingClientRect().top < wh - 60)
+            el.classList.add("visible");
+        });
+      }
+      window.addEventListener("scroll", revealOnScroll, { passive: true });
+      window.addEventListener("load", revealOnScroll);
+      revealOnScroll();
+    </script>
+  </body>
+</html>

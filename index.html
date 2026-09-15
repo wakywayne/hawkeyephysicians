@@ -1,13 +1,2160 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hawkeye Teleradiology — Close Your Coverage Gap. Tonight.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        background: #0d1b2a;
+        color: #c8d8e8;
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
 
-<head>
+      :root {
+        --ink: #0d1b2a;
+        --ink2: #111e2e;
+        --teal: #00c8b4;
+        --teal-l: rgba(0, 200, 180, 0.1);
+        --teal-b: rgba(0, 200, 180, 0.3);
+        --teal-d: #009e8c;
+        --teal: #00c8b4;
+        --teal-d: #009e8c;
+        --accent: #00c8b4;
+        --accent-d: #009e8c;
+        --white: #ffffff;
+        --off: #e8f0f8;
+        --muted: rgba(200, 216, 232, 0.55);
+        --muted2: rgba(200, 216, 232, 0.3);
+        --border: rgba(200, 216, 232, 0.1);
+        --border-l: rgba(200, 216, 232, 0.06);
+        --card: rgba(255, 255, 255, 0.04);
+        --card-h: rgba(255, 255, 255, 0.07);
+        --r: 6px;
+        --rl: 14px;
+        --max: 1160px;
+        --pad: clamp(1.5rem, 5vw, 4rem);
+        --fd: "Space Grotesk", sans-serif;
+        --fb: "Inter", sans-serif;
+      }
 
-</head>
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--fd);
+        letter-spacing: -0.025em;
+        color: var(--white);
+      }
+      h1 {
+        font-size: clamp(3rem, 5.5vw, 5rem);
+        font-weight: 700;
+        line-height: 1.02;
+      }
+      h2 {
+        font-size: clamp(2rem, 3.8vw, 3rem);
+        font-weight: 700;
+        line-height: 1.08;
+      }
+      h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+      p {
+        font-family: var(--fb);
+      }
 
-<body></body>
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--fd);
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.9rem;
+      }
+      .eyebrow::before {
+        content: "";
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--teal);
+        flex-shrink: 0;
+      }
 
-<!-- Custom js -->
-</body>
+      /* ── BUTTONS ── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-family: var(--fd);
+        font-size: 0.88rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        padding: 0.85rem 1.9rem;
+        border-radius: var(--r);
+        transition: all 0.2s;
+        white-space: nowrap;
+        cursor: pointer;
+        border: none;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+      .btn-teal {
+        background: var(--teal);
+        color: var(--ink);
+      }
+      .btn-teal:hover {
+        background: var(--teal-d);
+      }
+      .btn-ghost {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--white);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.17);
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+      .btn-teal {
+        background: var(--teal);
+        color: var(--ink);
+      }
+      .btn-teal:hover {
+        background: var(--teal-d);
+      }
 
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 300;
+        height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 var(--pad);
+        transition:
+          background 0.4s,
+          backdrop-filter 0.4s,
+          border-color 0.4s;
+        border-bottom: 1px solid transparent;
+      }
+      nav.scrolled {
+        background: rgba(13, 27, 42, 0.92);
+        backdrop-filter: blur(20px);
+        border-color: var(--border);
+      }
+      .nav-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+        filter: brightness(0) invert(1);
+        opacity: 0.9;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-family: var(--fd);
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+        transition: color 0.2s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--white);
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .nav-pill {
+        font-family: var(--fd);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--accent);
+        border: 1px solid rgba(0, 200, 180, 0.3);
+        padding: 0.33rem 0.8rem;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .nav-pill:hover {
+        background: var(--teal-l);
+        border-color: var(--teal);
+      }
+      .nav-cta {
+        font-family: var(--fd);
+        font-size: 0.76rem;
+        font-weight: 600;
+        padding: 0.48rem 1.1rem;
+        background: var(--accent);
+        color: var(--ink);
+        border-radius: var(--r);
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      .nav-cta:hover {
+        background: var(--accent-d);
+        transform: translateY(-1px);
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 6px;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+      .hamburger span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--white);
+        border-radius: 2px;
+      }
+      .mob-menu {
+        display: none;
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: rgba(13, 27, 42, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        padding: 1.5rem var(--pad);
+        z-index: 299;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .mob-menu.open {
+        display: flex;
+      }
+      .mob-menu a {
+        font-family: var(--fd);
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+      }
+      .mob-menu a:hover {
+        color: var(--white);
+      }
+      .mob-sep {
+        height: 0.5px;
+        background: var(--border);
+        margin: 0.25rem 0;
+      }
+
+      /* ── HERO — full viewport bleed ── */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 30%;
+        display: block;
+      }
+      .hero-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          105deg,
+          rgba(6, 15, 26, 0.92) 0%,
+          rgba(6, 15, 26, 0.8) 45%,
+          rgba(6, 15, 26, 0.35) 100%
+        );
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 var(--pad);
+        padding-top: 120px;
+        padding-bottom: 100px;
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 4rem;
+        align-items: center;
+        width: 100%;
+      }
+      .hero-left .eyebrow {
+        color: var(--accent);
+      }
+      .hero-left h1 {
+        margin-bottom: 1.4rem;
+        color: var(--white);
+      }
+      .hero-left h1 em {
+        font-style: normal;
+        color: var(--accent);
+      }
+      .hero-sub {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: rgba(232, 240, 248, 0.7);
+        max-width: 520px;
+        margin-bottom: 2.2rem;
+      }
+      .hero-ctas {
+        display: flex;
+        gap: 0.85rem;
+        flex-wrap: wrap;
+        margin-bottom: 2.8rem;
+      }
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--border);
+        padding-top: 2rem;
+      }
+      .hero-stat-divider {
+        width: 0.5px;
+        background: var(--border);
+      }
+      .hstat {
+        padding-right: 1.5rem;
+      }
+      .hstat:not(:first-child) {
+        padding-left: 1.5rem;
+      }
+      .hstat-num {
+        font-family: var(--fd);
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--accent);
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+      .hstat-label {
+        font-family: var(--fd);
+        font-size: 0.62rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        margin-top: 0.3rem;
+      }
+
+      /* Hero card */
+      .hero-card {
+        background: rgba(13, 27, 42, 0.75);
+        backdrop-filter: blur(24px);
+        border: 1px solid var(--border);
+        border-radius: var(--rl);
+        overflow: hidden;
+      }
+      .hero-card-header {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .hero-card-status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .pulse {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 3px rgba(0, 200, 180, 0.2);
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 3px rgba(0, 200, 180, 0.2);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(0, 200, 180, 0.05);
+        }
+      }
+      .hero-card-status span {
+        font-family: var(--fd);
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .hero-card-badge {
+        font-family: var(--fd);
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        color: var(--muted2);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 2px 7px;
+      }
+      .hero-card-body {
+        padding: 1.25rem 1.5rem;
+      }
+      .hero-card-label {
+        font-family: var(--fd);
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted2);
+        margin-bottom: 0.4rem;
+      }
+      .hero-card-finding {
+        font-family: var(--fb);
+        font-size: 0.82rem;
+        line-height: 1.65;
+        color: rgba(232, 240, 248, 0.75);
+        border-left: 2px solid var(--accent);
+        padding-left: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .hero-card-finding strong {
+        color: var(--white);
+        font-weight: 500;
+      }
+      .hero-card-footer {
+        border-top: 1px solid var(--border);
+        padding-top: 0.85rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .hero-card-footer span {
+        font-family: var(--fd);
+        font-size: 0.62rem;
+        color: var(--muted2);
+      }
+      .hero-card-footer .turnaround {
+        color: var(--accent);
+        font-weight: 700;
+      }
+      .hero-chips {
+        display: flex;
+        gap: 0.4rem;
+        margin-top: 0.85rem;
+        flex-wrap: wrap;
+      }
+      .hero-chip {
+        font-family: var(--fd);
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 0.25rem 0.65rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .hero-chip svg {
+        width: 9px;
+        height: 9px;
+        stroke: var(--teal);
+        fill: none;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex-shrink: 0;
+      }
+
+      /* ── ACCREDITATION BAR ── */
+      .acred-bar {
+        background: rgba(255, 255, 255, 0.03);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 0.9rem var(--pad);
+      }
+      .acred-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .acred-label {
+        font-family: var(--fd);
+        font-size: 0.58rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted2);
+        flex-shrink: 0;
+      }
+      .acred-items {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+      }
+      .acred-items span {
+        font-family: var(--fd);
+        font-size: 0.66rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+      .acred-dot {
+        color: var(--border);
+        font-size: 0.7rem;
+      }
+
+      /* ── AUDIENCE SPLIT — full bleed photo cards ── */
+      .audience-section {
+        padding: 6rem var(--pad);
+        background: var(--ink2);
+      }
+      .audience-head {
+        max-width: 580px;
+        margin: 0 auto 3.5rem;
+        text-align: center;
+      }
+      .audience-head p {
+        margin-top: 0.75rem;
+        font-size: 0.97rem;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+      .audience-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        max-width: var(--max);
+        margin: 0 auto;
+        background: var(--border);
+        border-radius: var(--rl);
+        overflow: hidden;
+      }
+      .aud-card {
+        background: var(--ink2);
+        position: relative;
+        overflow: hidden;
+        min-height: 520px;
+        display: flex;
+        flex-direction: column;
+        transition: background 0.3s;
+      }
+      .aud-card:hover {
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .aud-photo {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .aud-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        transition: transform 0.6s ease;
+      }
+      .aud-card:hover .aud-photo img {
+        transform: scale(1.04);
+      }
+      .aud-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(8, 18, 30, 0.97) 0%,
+          rgba(8, 18, 30, 0.75) 40%,
+          rgba(8, 18, 30, 0.2) 100%
+        );
+        transition: opacity 0.3s;
+      }
+      .aud-content {
+        position: relative;
+        z-index: 1;
+        padding: 10rem 1.75rem 2rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .aud-tag {
+        font-family: var(--fd);
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.65rem;
+      }
+      .aud-content h3 {
+        font-size: 1.18rem;
+        line-height: 1.3;
+        color: var(--white);
+        margin-bottom: 0.85rem;
+      }
+      .aud-list {
+        list-style: none;
+        margin-bottom: 1.25rem;
+        flex: 1;
+      }
+      .aud-list li {
+        font-size: 0.84rem;
+        color: rgba(200, 216, 232, 0.6);
+        padding: 0.32rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        line-height: 1.7;
+        padding-left: 1rem;
+        position: relative;
+      }
+      .aud-list li:last-child {
+        border-bottom: none;
+      }
+      .aud-list li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-size: 0.7rem;
+      }
+      .aud-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--fd);
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--accent);
+        letter-spacing: 0.02em;
+        transition: gap 0.2s;
+        margin-top: auto;
+      }
+      .aud-cta:hover {
+        gap: 0.65rem;
+      }
+
+      /* ── PILLARS — dark with photo band ── */
+      .pillars-section {
+        position: relative;
+        padding: 6rem var(--pad);
+        overflow: hidden;
+      }
+      .pillars-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .pillars-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.12) saturate(0.6);
+      }
+      .pillars-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(6, 12, 22, 0.7);
+      }
+      .pillars-inner {
+        position: relative;
+        z-index: 1;
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+      .pillars-head {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: end;
+        margin-bottom: 3.5rem;
+      }
+      .pillars-head p {
+        font-size: 0.95rem;
+        color: var(--muted);
+        line-height: 1.8;
+        max-width: 380px;
+      }
+      .pillar-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--border);
+      }
+      .pillar {
+        background: rgba(13, 27, 42, 0.6);
+        backdrop-filter: blur(8px);
+        padding: 2rem 1.75rem;
+        transition: background 0.25s;
+      }
+      .pillar:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .pillar-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(0, 200, 180, 0.2);
+        border-radius: var(--r);
+        margin-bottom: 1.1rem;
+        background: rgba(0, 200, 180, 0.06);
+      }
+      .pillar-icon svg {
+        width: 18px;
+        height: 18px;
+        stroke: var(--teal);
+        fill: none;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .pillar-proof {
+        font-family: var(--fd);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--accent);
+        display: block;
+        margin-bottom: 0.4rem;
+      }
+      .pillar h3 {
+        font-size: 0.97rem;
+        margin-bottom: 0.55rem;
+        color: var(--white);
+        line-height: 1.35;
+      }
+      .pillar p {
+        font-size: 0.84rem;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      /* ── TESTIMONIALS — full bleed photo ── */
+      .testi-section {
+        position: relative;
+        padding: 6rem var(--pad);
+        overflow: hidden;
+      }
+      .testi-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .testi-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 40%;
+      }
+      .testi-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 109, 98, 0.92) 0%,
+          rgba(0, 77, 69, 0.88) 100%
+        );
+      }
+      .testi-inner {
+        position: relative;
+        z-index: 1;
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+      .testi-head {
+        max-width: 640px;
+        margin-bottom: 3rem;
+      }
+      .testi-head h2 {
+        color: var(--white);
+      }
+      .testi-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      .testi-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: var(--rl);
+        padding: 2rem 1.75rem;
+        transition:
+          background 0.25s,
+          transform 0.25s;
+      }
+      .testi-card:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+      }
+      .testi-stars {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      .stars {
+        color: #ffd966;
+        font-size: 0.8rem;
+        letter-spacing: 0.05em;
+      }
+      .verified {
+        font-family: var(--fd);
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        padding: 2px 6px;
+      }
+      .testi-quote {
+        font-size: 0.9rem;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 1.5rem;
+        font-style: italic;
+      }
+      .testi-author {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        padding-top: 1.1rem;
+      }
+      .testi-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--fd);
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #fff;
+        flex-shrink: 0;
+      }
+      .testi-name {
+        font-family: var(--fd);
+        font-size: 0.83rem;
+        font-weight: 600;
+        color: #fff;
+      }
+      .testi-role {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.55);
+      }
+      .testi-org {
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      /* ── FAQ ── */
+      .faq-section {
+        background: var(--ink2);
+        padding: 6rem var(--pad);
+      }
+      .faq-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.6fr;
+        gap: 5rem;
+        align-items: start;
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+      .faq-layout > div:first-child p {
+        margin-top: 0.75rem;
+        font-size: 0.94rem;
+        color: var(--muted);
+        max-width: 280px;
+        line-height: 1.8;
+      }
+      .faq-list {
+        margin-top: 0.5rem;
+      }
+      .faq-item {
+        border-bottom: 1px solid var(--border);
+      }
+      .faq-item:first-child {
+        border-top: 1px solid var(--border);
+      }
+      .faq-q {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        font-family: var(--fd);
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--off);
+        padding: 1.1rem 0;
+        cursor: pointer;
+        user-select: none;
+        transition: color 0.2s;
+      }
+      .faq-q:hover {
+        color: var(--accent);
+      }
+      .faq-icon {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .faq-icon svg {
+        width: 10px;
+        height: 10px;
+        stroke: var(--teal);
+        fill: none;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        transition: transform 0.3s;
+      }
+      .faq-item.open .faq-icon {
+        background: var(--teal-l);
+        border-color: rgba(0, 200, 180, 0.3);
+      }
+      .faq-item.open .faq-icon svg {
+        transform: rotate(45deg);
+      }
+      .faq-a {
+        font-size: 0.88rem;
+        color: var(--muted);
+        line-height: 1.8;
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.35s ease,
+          padding 0.3s ease;
+      }
+      .faq-item.open .faq-a {
+        max-height: 300px;
+        padding-bottom: 1.1rem;
+      }
+
+      /* ── FINAL CTA — full viewport bleed ── */
+      .final-cta {
+        position: relative;
+        overflow: hidden;
+        padding: 9rem var(--pad);
+        text-align: center;
+      }
+      .final-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .final-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+      }
+      .final-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(6, 12, 22, 0.88) 0%,
+          rgba(0, 77, 69, 0.85) 100%
+        );
+      }
+      .final-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 580px;
+        margin: 0 auto;
+      }
+      .final-inner h2 {
+        color: var(--white);
+        margin-bottom: 0.85rem;
+      }
+      .final-inner p {
+        font-size: 0.97rem;
+        line-height: 1.8;
+        color: rgba(232, 240, 248, 0.65);
+        margin-bottom: 2.4rem;
+        max-width: 440px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .cta-row {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: #060d16;
+        border-top: 1px solid var(--border);
+        padding: 4.5rem var(--pad) 2.5rem;
+      }
+      .footer-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+      .footer-brand p {
+        font-size: 0.82rem;
+        max-width: 240px;
+        line-height: 1.7;
+        color: var(--muted2);
+        margin-top: 0.75rem;
+      }
+      .footer-badges {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        margin-top: 0.85rem;
+      }
+      .badge {
+        font-family: var(--fd);
+        font-size: 0.58rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--muted2);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 3px 7px;
+      }
+      .fcol h4 {
+        font-family: var(--fd);
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted2);
+        margin-bottom: 0.85rem;
+      }
+      .fcol ul {
+        list-style: none;
+      }
+      .fcol li {
+        margin-bottom: 0.5rem;
+      }
+      .fcol a {
+        font-size: 0.82rem;
+        color: var(--muted2);
+        transition: color 0.2s;
+      }
+      .fcol a:hover {
+        color: var(--white);
+      }
+      .footer-bottom {
+        border-top: 1px solid var(--border);
+        padding-top: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .footer-bottom p {
+        font-size: 0.72rem;
+        color: var(--muted2);
+        margin: 0;
+      }
+      .footer-legal-links {
+        display: flex;
+        gap: 1.1rem;
+      }
+      .footer-legal-links a {
+        font-size: 0.72rem;
+        color: var(--muted2);
+        transition: color 0.2s;
+      }
+      .footer-legal-links a:hover {
+        color: var(--white);
+      }
+
+      /* ── MODAL ── */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 500;
+        background: rgba(6, 12, 22, 0.85);
+        backdrop-filter: blur(12px);
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .modal {
+        background: #111e2e;
+        border: 1px solid var(--border);
+        border-radius: var(--rl);
+        padding: 2.5rem;
+        width: 100%;
+        max-width: 500px;
+        position: relative;
+        animation: modalIn 0.25s ease;
+      }
+      @keyframes modalIn {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .modal-close {
+        position: absolute;
+        top: 1.1rem;
+        right: 1.1rem;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .modal-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .modal-close svg {
+        width: 12px;
+        height: 12px;
+        stroke: var(--muted);
+        fill: none;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+      }
+      .modal h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.4rem;
+        color: var(--white);
+      }
+      .modal-sub {
+        font-size: 0.86rem;
+        color: var(--muted);
+        margin-bottom: 1.75rem;
+        line-height: 1.6;
+      }
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      .form-group label {
+        display: block;
+        font-family: var(--fd);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--muted2);
+        margin-bottom: 0.4rem;
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 0.72rem 0.95rem;
+        font-family: var(--fb);
+        font-size: 0.88rem;
+        color: var(--white);
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .form-group input::placeholder {
+        color: var(--muted2);
+      }
+      .form-group input:focus,
+      .form-group select:focus {
+        border-color: var(--teal);
+      }
+      .form-group select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7F94' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.9rem center;
+        padding-right: 2.2rem;
+        cursor: pointer;
+      }
+      .form-group select option {
+        background: #111e2e;
+        color: var(--white);
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.85rem;
+      }
+      .form-note {
+        font-size: 0.75rem;
+        color: var(--muted2);
+        margin-top: 1rem;
+        text-align: center;
+        line-height: 1.5;
+      }
+
+      /* ── REVEAL ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1024px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+          padding-top: 140px;
+        }
+        .hero-card {
+          max-width: 480px;
+        }
+        .audience-grid {
+          grid-template-columns: 1fr;
+        }
+        .audience-grid .aud-card {
+          min-height: 400px;
+        }
+        .pillars-head {
+          grid-template-columns: 1fr;
+        }
+        .pillar-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .testi-grid {
+          grid-template-columns: 1fr;
+        }
+        .faq-layout {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 768px) {
+        .nav-links,
+        .nav-right {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .pillar-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-stats {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .audience-grid .aud-card {
+          min-height: 280px;
+        }
+      }
+      @media (max-width: 560px) {
+        h1 {
+          font-size: 2.6rem;
+        }
+        h2 {
+          font-size: 1.8rem;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav id="mainnav">
+      <a href="index.html" class="nav-logo">
+        <img
+          src="https://hawkeye.nexcrafters.com/wp-content/uploads/2026/06/Hawkeye-Logo.png"
+          alt="Hawkeye Teleradiology"
+        />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="for-radiologists.html" class="nav-pill">For Radiologists</a>
+        <a
+          href="#"
+          onclick="
+            event.preventDefault();
+            openModal();
+          "
+          class="nav-cta"
+          >Contact Us</a
+        >
+      </div>
+      <button
+        class="hamburger"
+        onclick="document.getElementById('mob').classList.toggle('open')"
+        aria-label="Open menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="mob-menu" id="mob">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About Us</a>
+      <div class="mob-sep"></div>
+      <a href="for-radiologists.html" style="color: var(--accent)"
+        >For Radiologists →</a
+      >
+      <a
+        href="#"
+        onclick="
+          event.preventDefault();
+          openModal();
+        "
+        style="
+          color: var(--ink);
+          background: var(--accent);
+          padding: 0.65rem 1rem;
+          border-radius: var(--r);
+          text-align: center;
+          font-weight: 700;
+          font-family: var(--fd);
+        "
+        >Contact Us</a
+      >
+    </div>
+
+    <!-- HERO — full viewport bleed -->
+    <div class="hero">
+      <div class="hero-bg">
+        <img
+          src="https://images.pexels.com/photos/7088524/pexels-photo-7088524.jpeg?auto=compress&cs=tinysrgb&w=1800&h=1200&fit=crop"
+          alt="Radiologist reviewing diagnostic imaging at workstation"
+          loading="eager"
+        />
+      </div>
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="eyebrow">Subspecialty Teleradiology · Nationwide</div>
+          <h1>Close Your<br />Coverage Gap.<br /><em>Tonight.</em></h1>
+          <p class="hero-sub">
+            When your emergency radiology practice is overwhelming your
+            radiologists, radiologists leave, patients wait and liability
+            climbs. Hawkeye closes that gap — with board-certified,
+            fellowship-trained subspecialists already licensed in your state.
+          </p>
+          <div class="hero-ctas">
+            <a href="services.html" class="btn btn-teal">Our Services</a>
+            <a href="about.html" class="btn btn-ghost">About Hawkeye</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hstat">
+              <div class="hstat-num">
+                20<span style="font-size: 1.2rem">min</span>
+              </div>
+              <div class="hstat-label">STAT Turnaround</div>
+            </div>
+            <div class="hstat" style="border-left: 1px solid var(--border)">
+              <div class="hstat-num">30+</div>
+              <div class="hstat-label">Partner Facilities</div>
+            </div>
+            <div class="hstat" style="border-left: 1px solid var(--border)">
+              <div class="hstat-num">12+</div>
+              <div class="hstat-label">Subspecialties</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card reveal">
+          <div class="hero-card-header">
+            <div class="hero-card-status">
+              <div class="pulse"></div>
+              <span>Report Signed &amp; Delivered</span>
+            </div>
+            <div class="hero-card-badge">Final Report</div>
+          </div>
+          <div class="hero-card-body">
+            <div class="hero-card-label">Radiology Report · Final Read</div>
+            <div class="hero-card-finding">
+              <strong>Impression:</strong> No acute intracranial abnormality. No
+              hemorrhage or mass effect identified. Signed by fellowship-trained
+              subspecialist.
+            </div>
+            <div class="hero-card-footer">
+              <span>→ Delivered to EMR + Attending</span>
+              <span class="turnaround">23 min turnaround</span>
+            </div>
+            <div class="hero-chips">
+              <div class="hero-chip">
+                <svg viewBox="0 0 24 24">
+                  <polyline points="20 6 9 17 4 12" /></svg
+                >HIPAA Compliant
+              </div>
+              <div class="hero-chip">
+                <svg viewBox="0 0 24 24">
+                  <polyline points="20 6 9 17 4 12" /></svg
+                >HL7 FHIR
+              </div>
+              <div class="hero-chip">
+                <svg viewBox="0 0 24 24">
+                  <polyline points="20 6 9 17 4 12" /></svg
+                >PACS Connected
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCREDITATION BAR -->
+    <div class="acred-bar">
+      <div class="acred-inner">
+        <span class="acred-label">Standards &amp; Compliance</span>
+        <div class="acred-items">
+          <span>HIPAA Compliant</span><span class="acred-dot">·</span>
+          <span>SOC 2 Type II</span><span class="acred-dot">·</span>
+          <span>HL7 FHIR Ready</span><span class="acred-dot">·</span>
+          <span>Joint Commission</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUDIENCE SPLIT — full bleed photo cards -->
+    <section class="audience-section">
+      <div class="audience-head">
+        <div class="eyebrow" style="justify-content: center">Who We Serve</div>
+        <h2>Built for every stakeholder<br />in the imaging chain.</h2>
+        <p>
+          Whether you run a hospital network, oversee radiology operations, or
+          are a radiologist ready for a better model — Hawkeye was built around
+          your specific problem.
+        </p>
+      </div>
+      <div class="audience-grid">
+        <div class="aud-card reveal">
+          <div class="aud-photo">
+            <img
+              src="https://images.pexels.com/photos/4094199/pexels-photo-4094199.jpeg?auto=compress&cs=tinysrgb&w=800&h=900&fit=crop"
+              alt="Hospital system"
+            />
+          </div>
+          <div class="aud-content">
+            <div class="aud-tag">Healthcare Systems</div>
+            <h3>Your radiologists can't cover every shift. Ours can.</h3>
+            <ul class="aud-list">
+              <li>Evening and overnight coverage, including holidays</li>
+              <li>Direct PACS integration — live in weeks</li>
+              <li>STAT, Urgent, and Routine SLA tiers</li>
+              <li>Joint Commission compliance ready</li>
+            </ul>
+            <a href="services.html" class="aud-cta">See Coverage Options →</a>
+          </div>
+        </div>
+        <div class="aud-card reveal reveal-delay-1">
+          <div class="aud-photo">
+            <img
+              src="https://images.pexels.com/photos/8376228/pexels-photo-8376228.jpeg?auto=compress&cs=tinysrgb&w=800&h=900&fit=crop"
+              alt="Healthcare administrator"
+            />
+          </div>
+          <div class="aud-content">
+            <div class="aud-tag">Administrators</div>
+            <h3>Stop managing coverage chaos. Start managing outcomes.</h3>
+            <ul class="aud-list">
+              <li>Consistent turnaround — no chasing delayed reads</li>
+              <li>One vendor, one contract, one invoice</li>
+              <li>Fellowship-trained depth without a full department</li>
+            </ul>
+            <a href="services.html" class="aud-cta">See How It Works →</a>
+          </div>
+        </div>
+        <div class="aud-card reveal reveal-delay-2">
+          <div class="aud-photo">
+            <img
+              src="https://images.pexels.com/photos/7089630/pexels-photo-7089630.jpeg?auto=compress&cs=tinysrgb&w=800&h=900&fit=crop"
+              alt="Radiologist at workstation"
+            />
+          </div>
+          <div class="aud-content">
+            <div class="aud-tag">Radiologists</div>
+            <h3>Earn what your expertise is worth.</h3>
+            <ul class="aud-list">
+              <li>Producivity based pay on true CMS RVUs - no income cap</li>
+              <li>Cloud based workstation — work from anywhere</li>
+              <li>Flexible scheduling — full-time or supplemental</li>
+              <li>Your pace, your volume — keep what you earn</li>
+            </ul>
+            <a href="for-radiologists.html" class="aud-cta"
+              >Join Our Network →</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PILLARS — photo-backed dark section -->
+    <section class="pillars-section">
+      <div class="pillars-bg">
+        <img
+          src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop"
+          alt=""
+        />
+      </div>
+      <div class="pillars-inner">
+        <div class="pillars-head">
+          <div>
+            <div class="eyebrow">Why Hawkeye</div>
+            <h2>Why hospital systems<br />choose Hawkeye.</h2>
+          </div>
+          <div>
+            <p>
+              Speed and quality are the price of entry. What actually
+              differentiates Hawkeye is accountability — contractual where it
+              matters, personal where it counts.
+            </p>
+          </div>
+        </div>
+        <div class="pillar-grid">
+          <div class="pillar reveal">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <span class="pillar-proof">20–30 min</span>
+            <h3>STAT Turnaround — Guaranteed</h3>
+            <p>
+              Not a target. A contractual SLA. Our STAT turnaround runs 20–30
+              minutes.
+            </p>
+          </div>
+          <div class="pillar reveal reveal-delay-1">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <span class="pillar-proof">&nbsp;</span>
+            <h3>Built Around Coverage Gaps</h3>
+            <p>
+              Nights, weekends, holidays, surge. We're structured exactly around
+              the moments that leave radiology departments most exposed.
+            </p>
+          </div>
+          <div class="pillar reveal reveal-delay-2">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+            </div>
+            <span class="pillar-proof">&nbsp;</span>
+            <h3>Fellowship-Trained, Board-Certified</h3>
+            <p>
+              U.S.-based, U.S.-trained subspecialists across every study type —
+              so your patients never wait for the right expertise.
+            </p>
+          </div>
+          <div class="pillar reveal">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24">
+                <line x1="18" y1="20" x2="18" y2="10" />
+                <line x1="12" y1="20" x2="12" y2="4" />
+                <line x1="6" y1="20" x2="6" y2="14" />
+              </svg>
+            </div>
+            <span class="pillar-proof">&nbsp;</span>
+            <h3>No Cookie-Cutter Contracts</h3>
+            <p>
+              Coverage modeled around your actual case mix, peak hours, and
+              subspecialty needs. You pay for what you use.
+            </p>
+          </div>
+          <div class="pillar reveal reveal-delay-1">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </div>
+            <span class="pillar-proof">6 weeks</span>
+            <h3>Live in Weeks, Not Quarters</h3>
+            <p>
+              We connect to your existing PACS and EMR — your techs upload
+              exactly as they always have.
+            </p>
+          </div>
+          <div class="pillar reveal reveal-delay-2">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.1.97.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.84.6 2.81.7A2 2 0 0 1 22 16.92z"
+                />
+              </svg>
+            </div>
+            <span class="pillar-proof">&nbsp;</span>
+            <h3>Leadership Picks Up the Phone</h3>
+            <p>
+              When something needs attention, you're not reaching a call center.
+              You're reaching Hawkeye leadership directly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS — teal-overlaid photo -->
+    <section class="testi-section">
+      <div class="testi-bg">
+        <img
+          src="https://images.pexels.com/photos/5452193/pexels-photo-5452193.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop"
+          alt=""
+        />
+      </div>
+      <div class="testi-inner">
+        <div class="testi-head">
+          <div class="eyebrow">What Our Partners Say</div>
+          <h2>Trusted by teams who<br />can't afford to wait.</h2>
+        </div>
+        <div class="testi-grid">
+          <div class="testi-card reveal">
+            <div class="testi-stars">
+              <span class="stars">★★★★★</span
+              ><span class="verified">Verified Partner</span>
+            </div>
+            <p class="testi-quote">
+              We had a recurring overnight gap that cost us locum coverage every
+              weekend. Hawkeye closed it. Integration took weeks, not months. The
+              first night we went live, the turnaround was 24 minutes.
+            </p>
+            <div class="testi-author">
+              <div class="testi-avatar">MW</div>
+              <div>
+                <div class="testi-name">Dr. Marcus Webb, MD</div>
+                <div class="testi-role">Chief Medical Officer</div>
+                <div class="testi-org">
+                  Regional Health Network · 8 Hospitals
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card reveal reveal-delay-1">
+            <div class="testi-stars">
+              <span class="stars">★★★★★</span
+              ><span class="verified">Verified Partner</span>
+            </div>
+            <p class="testi-quote">
+              We replaced two separate teleradiology vendors with Hawkeye and
+              cut our overnight read cost by a meaningful margin. One contract,
+              one invoice, one call when something needs attention.
+            </p>
+            <div class="testi-author">
+              <div class="testi-avatar">PL</div>
+              <div>
+                <div class="testi-name">Priya Langford</div>
+                <div class="testi-role">VP Radiology Operations</div>
+                <div class="testi-org">St. Augustine Medical Group</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card reveal reveal-delay-2">
+            <div class="testi-stars">
+              <span class="stars">★★★★★</span
+              ><span class="verified">Verified Partner</span>
+            </div>
+            <p class="testi-quote">
+              I read neuroradiology for two academic programs and supplement
+              through Hawkeye. The reads are subspecialty-grade, the tools
+              actually work, and the RVU model is the most straightforward I've
+              seen.
+            </p>
+            <div class="testi-author">
+              <div class="testi-avatar">SK</div>
+              <div>
+                <div class="testi-name">Dr. Sarah Kimani, MD</div>
+                <div class="testi-role">Neuroradiologist</div>
+                <div class="testi-org">Hawkeye Network Partner since 2023</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="faq-layout">
+        <div>
+          <div class="eyebrow">Common Questions</div>
+          <h2>Questions we hear before every partnership.</h2>
+          <p>
+            Straight answers to the things hospital leaders need to know before
+            they're ready to talk.
+          </p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              How quickly can we actually go live?
+              <div class="faq-icon">
+                <svg viewBox="0 0 24 24">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </div>
+            </div>
+            <div class="faq-a">
+              Most facilities can go live in approximately 6 weeks. Our integration team handles the PACS connection, credentialing verification, and workflow configuration. Your technologists upload the same way they always have.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              Why not just hire additional in-house radiologists?
+              <div class="faq-icon">
+                <svg viewBox="0 0 24 24">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </div>
+            </div>
+            <div class="faq-a">
+              Hiring a dedicated team is challenging, from both staffing and
+              costs perspectives. We can provide a large team where you only pay
+              for what you use. Many members of our team are hungry to jump on if there's a surge.  TATs never get unmanageable.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              Who is actually reading our cases?
+              <div class="faq-icon">
+                <svg viewBox="0 0 24 24">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </div>
+            </div>
+            <div class="faq-a">
+              All reads are performed by U.S. -trained, U.S.-based, ABR / AOBR board-certified radiologists.
+            </div>
+          </div>
+ 
+
+              <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              How does credentialing work?
+              <div class="faq-icon">
+                <svg viewBox="0 0 24 24">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </div>
+            </div>
+            <div class="faq-a">
+              Our team of in-house credentialers prepares and submits the applications for our radiologists to your hospital clients' Medical Staff Offices.
+            </div>
+          </div>
+
+                        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              How reliable is our service?
+              <div class="faq-icon">
+                <svg viewBox="0 0 24 24">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </div>
+            </div>
+            <div class="faq-a">
+              No one from our client practices has ever had to read a case while we were on duty.
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+ 
+    </section>
+
+    <!-- FINAL CTA — full bleed -->
+    <div class="final-cta">
+      <div class="final-bg">
+        <img
+          src="https://images.pexels.com/photos/15277956/pexels-photo-15277956.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop"
+          alt=""
+        />
+      </div>
+      <div class="final-inner">
+        <div class="eyebrow" style="justify-content: center">
+          Ready to get started?
+        </div>
+        <h2>Live in as short<br />as 6 weeks.</h2>
+        <p>
+          Let's start that conversation. We'll walk you through what integration
+          looks like for your specific setup.
+        </p>
+        <div class="cta-row">
+          <a
+            href="#"
+            onclick="
+              event.preventDefault();
+              openModal();
+            "
+            class="btn btn-teal"
+            >Talk to Our Team</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img
+              src="https://hawkeye.nexcrafters.com/wp-content/uploads/2026/06/Hawkeye-Logo.png"
+              alt="Hawkeye Teleradiology"
+              style="
+                height: 34px;
+                width: auto;
+                filter: brightness(0) invert(1);
+                opacity: 0.7;
+              "
+            />
+            <p>
+              Board-certified subspecialty teleradiology for healthcare systems,
+              administrators, and radiologists — delivered with clinical
+              precision and operational reliability.
+            </p>
+            <div class="footer-badges">
+              <span class="badge">HIPAA</span
+              ><span class="badge">24/7/365</span>
+              <span class="badge">U.S.-Based</span
+              ><span class="badge">SOC 2</span>
+            </div>
+          </div>
+          <div class="fcol">
+            <h4>Platform</h4>
+            <ul>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="services.html#coverage">Coverage Options</a></li>
+            </ul>
+          </div>
+          <div class="fcol">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li>
+                <a
+                  href="#"
+                  onclick="
+                    event.preventDefault();
+                    openModal();
+                  "
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 Hawkeye Physicians PLLC. All rights reserved.</p>
+          <div class="footer-legal-links">
+            <a href="legal.html#pp-scope">Privacy Policy</a>
+            <a href="legal.html#tou-acceptance">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- CONTACT MODAL -->
+    <div class="modal-overlay" id="demoModal">
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
+        <button class="modal-close" onclick="closeModal()" aria-label="Close">
+          <svg viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <h3 id="modal-title">Contact Us</h3>
+        <p class="modal-sub">
+          We'll reach out within 1–2 business days to schedule a 30-minute
+          walkthrough of integration, coverage, and pricing.
+        </p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label
+            ><input type="text" id="fname" placeholder="Marcus" />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label
+            ><input type="text" id="lname" placeholder="Webb" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Work Email</label
+          ><input
+            type="email"
+            id="email"
+            placeholder="you@hospitalnetwork.org"
+          />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="org">Organization</label
+            ><input type="text" id="org" placeholder="Memorial West Health" />
+          </div>
+          <div class="form-group">
+            <label for="role">Your Role</label>
+            <select id="role">
+              <option value="" disabled selected>Select role</option>
+              <option>CMO / Chief Medical Officer</option>
+              <option>VP / Director of Radiology</option>
+              <option>Radiology Administrator</option>
+              <option>Hospital Administrator</option>
+              <option>Radiologist</option>
+              <option>IT / Informatics</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="need">Primary Need</label>
+          <select id="need">
+            <option value="" disabled selected>What brings you here?</option>
+            <option>Overnight / weekend coverage gap</option>
+            <option>Surge / volume overflow</option>
+            <option>Subspecialty reads I can't staff</option>
+            <option>Replacing a current teleradiology vendor</option>
+            <option>Evaluating options — no urgent need</option>
+            <option>Radiologist — joining the network</option>
+          </select>
+        </div>
+        <button
+          class="btn btn-teal"
+          style="
+            width: 100%;
+            justify-content: center;
+            margin-top: 0.5rem;
+            color: var(--ink);
+          "
+          onclick="submitDemo()"
+        >
+          Send Message
+        </button>
+        <div
+          style="
+            text-align: center;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+          "
+        >
+          <p
+            style="
+              font-size: 0.78rem;
+              color: var(--muted2);
+              font-family: var(--fd);
+            "
+          >
+            Prefer to call?
+            <a
+              href="tel:5163634896"
+              style="
+                color: var(--teal);
+                font-weight: 600;
+                transition: opacity 0.2s;
+              "
+              onmouseover="this.style.opacity = '.75'"
+              onmouseout="this.style.opacity = '1'"
+              >516-363-4896</a
+            >
+          </p>
+        </div>
+        <p class="form-note">
+          HIPAA-compliant. Your information is never shared or sold.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Nav scroll
+      window.addEventListener(
+        "scroll",
+        function () {
+          document
+            .getElementById("mainnav")
+            .classList.toggle("scrolled", window.scrollY > 60);
+        },
+        { passive: true },
+      );
+
+      // Modal
+      function openModal() {
+        document.getElementById("demoModal").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeModal() {
+        document.getElementById("demoModal").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      document
+        .getElementById("demoModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeModal();
+        });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeModal();
+      });
+      function submitDemo() {
+        var btn = document.querySelector("#demoModal .btn-accent");
+        btn.textContent = "✓  Message received — we'll be in touch shortly";
+        btn.style.background = "#1A7A4A";
+        btn.style.color = "#fff";
+        btn.onclick = null;
+        setTimeout(function () {
+          closeModal();
+          btn.textContent = "Send Message";
+          btn.style.background = "";
+          btn.style.color = "";
+          btn.onclick = submitDemo;
+        }, 3200);
+      }
+
+      // FAQ
+      function toggleFaq(el) {
+        var item = el.closest(".faq-item");
+        var wasOpen = item.classList.contains("open");
+        document.querySelectorAll(".faq-item.open").forEach(function (i) {
+          i.classList.remove("open");
+        });
+        if (!wasOpen) item.classList.add("open");
+      }
+
+      // Reveal on scroll
+      function revealOnScroll() {
+        document.querySelectorAll(".reveal").forEach(function (el) {
+          if (el.getBoundingClientRect().top < window.innerHeight - 60)
+            el.classList.add("visible");
+        });
+      }
+      window.addEventListener("scroll", revealOnScroll, { passive: true });
+      window.addEventListener("load", revealOnScroll);
+      revealOnScroll();
+    </script>
+  </body>
 </html>

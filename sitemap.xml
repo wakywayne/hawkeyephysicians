@@ -3,8 +3,19 @@
   <url>
     <loc>https://hawkeyephysicianspllc.com/</loc>
   </url>
-  <!-- <url> -->
-  <!--   <loc>https://hawkeyephysicianspllc.com/reviews.html</loc> -->
-  <!-- </url> -->
+  <url>
+    <loc>https://hawkeyephysicianspllc.com/index.html</loc>
+  </url>
+  <url>
+    <loc>https://hawkeyephysicianspllc.com/about.html</loc>
+  </url>
+  <url>
+    <loc>https://hawkeyephysicianspllc.com/for-radiologists.html</loc>
+  </url>
+  <url>
+    <loc>https://hawkeyephysicianspllc.com/legal.html</loc>
+  </url>
+  <url>
+    <loc>https://hawkeyephysicianspllc.com/services.html</loc>
+  </url>
 </urlset>
-
