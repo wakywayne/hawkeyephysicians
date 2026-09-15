@@ -19,10 +19,12 @@
         margin: 0;
         padding: 0;
       }
+
       html {
         scroll-behavior: smooth;
         -webkit-text-size-adjust: 100%;
       }
+
       body {
         background: #0d1b2a;
         color: rgba(200, 216, 232, 0.7);
@@ -32,10 +34,12 @@
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
       }
+
       a {
         color: inherit;
         text-decoration: none;
       }
+
       img {
         display: block;
         max-width: 100%;
@@ -75,17 +79,20 @@
         color: var(--ink);
         letter-spacing: -0.025em;
       }
+
       h1 {
         font-size: clamp(2.2rem, 4vw, 3rem);
         font-weight: 700;
         line-height: 1.1;
       }
+
       h2 {
         font-size: 1.5rem;
         font-weight: 700;
         line-height: 1.2;
         margin-bottom: 0.85rem;
       }
+
       h3 {
         font-size: 1.02rem;
         font-weight: 600;
@@ -93,11 +100,13 @@
         margin-bottom: 0.5rem;
         color: var(--ink);
       }
+
       p {
         color: var(--body);
         font-family: var(--font-b);
         margin-bottom: 1rem;
       }
+
       em.teal {
         font-style: normal;
         color: var(--teal);
@@ -115,6 +124,7 @@
         color: var(--teal);
         margin-bottom: 1rem;
       }
+
       .eyebrow::before {
         content: "";
         display: block;
@@ -148,17 +158,21 @@
         cursor: pointer;
         border: none;
       }
+
       .btn:hover {
         transform: translateY(-1px);
       }
+
       .btn-teal {
         background: var(--teal);
         color: var(--ink);
       }
+
       .btn-teal:hover {
         background: var(--teal-d);
         opacity: 1;
       }
+
       .btn-outline {
         background: transparent;
         color: var(--ink);
@@ -168,6 +182,7 @@
           background 0.2s,
           transform 0.15s;
       }
+
       .btn-outline:hover {
         border-color: var(--teal);
         background: var(--teal-l);
@@ -193,16 +208,19 @@
           background 0.3s,
           box-shadow 0.3s;
       }
+
       nav.scrolled {
         background: rgba(13, 27, 42, 0.98);
         box-shadow: 0 1px 28px rgba(0, 0, 0, 0.3);
       }
+
       .nav-links {
         display: flex;
         align-items: center;
         gap: 2rem;
         list-style: none;
       }
+
       .nav-links a {
         font-family: var(--font-d);
         font-size: 0.8rem;
@@ -211,15 +229,18 @@
         color: rgba(200, 216, 232, 0.55);
         transition: color 0.2s;
       }
+
       .nav-links a:hover,
       .nav-links a.active {
         color: #fff;
       }
+
       .nav-right {
         display: flex;
         align-items: center;
         gap: 0.75rem;
       }
+
       .nav-pill {
         font-family: var(--font-d);
         font-size: 0.72rem;
@@ -233,10 +254,12 @@
         cursor: pointer;
         transition: all 0.2s;
       }
+
       .nav-pill:hover {
         background: var(--teal-l);
         border-color: var(--teal);
       }
+
       .hamburger {
         display: none;
         flex-direction: column;
@@ -246,6 +269,7 @@
         background: none;
         border: none;
       }
+
       .hamburger span {
         display: block;
         width: 22px;
@@ -253,6 +277,7 @@
         background: #fff;
         border-radius: 2px;
       }
+
       .mob-menu {
         display: none;
         position: fixed;
@@ -267,9 +292,11 @@
         gap: 1rem;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
       }
+
       .mob-menu.open {
         display: flex;
       }
+
       .mob-menu a {
         font-family: var(--font-d);
         font-size: 0.9rem;
@@ -279,9 +306,11 @@
         letter-spacing: 0.04em;
         transition: color 0.2s;
       }
+
       .mob-menu a:hover {
         color: #fff;
       }
+
       .mob-sep {
         height: 0.5px;
         background: var(--border);
@@ -294,11 +323,13 @@
         background: #0a1520;
         border-bottom: 1px solid rgba(200, 216, 232, 0.1);
       }
+
       .page-header-inner {
         max-width: 680px;
         margin: 0 auto;
         text-align: center;
       }
+
       .page-breadcrumb {
         display: inline-flex;
         align-items: center;
@@ -309,20 +340,25 @@
         color: rgba(200, 216, 232, 0.4);
         margin-bottom: 1.25rem;
       }
+
       .page-breadcrumb a {
         color: rgba(200, 216, 232, 0.4);
         transition: color 0.2s;
       }
+
       .page-breadcrumb a:hover {
         color: var(--teal);
       }
+
       .page-breadcrumb span {
         color: var(--teal);
       }
+
       .page-header h1 {
         margin-bottom: 1rem;
         color: #fff;
       }
+
       .page-header .page-desc {
         font-size: 0.97rem;
         line-height: 1.8;
@@ -330,6 +366,7 @@
         max-width: 540px;
         margin: 0 auto;
       }
+
       .page-meta {
         margin-top: 1.25rem;
         font-family: var(--font-d);
@@ -345,6 +382,7 @@
         border-bottom: 1px solid rgba(148, 104, 0, 0.3);
         padding: 1.1rem var(--pad);
       }
+
       .review-banner-inner {
         max-width: var(--max);
         margin: 0 auto;
@@ -352,6 +390,7 @@
         gap: 0.9rem;
         align-items: flex-start;
       }
+
       .review-banner svg {
         width: 18px;
         height: 18px;
@@ -361,12 +400,14 @@
         flex-shrink: 0;
         margin-top: 2px;
       }
+
       .review-banner p {
         font-size: 0.84rem;
         color: rgba(255, 210, 100, 0.85);
         margin: 0;
         line-height: 1.6;
       }
+
       .review-banner strong {
         color: rgba(255, 210, 100, 1);
       }
@@ -376,6 +417,7 @@
         background: #111e2e;
         padding: 4.5rem var(--pad) 6rem;
       }
+
       .legal-layout {
         max-width: var(--max);
         margin: 0 auto;
@@ -384,6 +426,7 @@
         gap: 3.5rem;
         align-items: start;
       }
+
       .legal-toc {
         position: sticky;
         top: 90px;
@@ -397,19 +440,24 @@
         scrollbar-width: thin;
         scrollbar-color: rgba(0, 109, 98, 0.2) transparent;
       }
+
       .legal-toc::-webkit-scrollbar {
         width: 4px;
       }
+
       .legal-toc::-webkit-scrollbar-track {
         background: transparent;
       }
+
       .legal-toc::-webkit-scrollbar-thumb {
         background: rgba(0, 109, 98, 0.2);
         border-radius: 2px;
       }
+
       .legal-toc::-webkit-scrollbar-thumb:hover {
         background: rgba(0, 200, 180, 0.4);
       }
+
       .legal-toc-label {
         font-family: var(--font-d);
         font-size: 0.62rem;
@@ -419,12 +467,15 @@
         color: var(--muted2);
         margin-bottom: 0.9rem;
       }
+
       .legal-toc ul {
         list-style: none;
       }
+
       .legal-toc li {
         margin-bottom: 0.15rem;
       }
+
       .legal-toc a {
         display: block;
         font-size: 0.82rem;
@@ -435,15 +486,18 @@
           background 0.2s,
           color 0.2s;
       }
+
       .legal-toc a:hover {
         color: var(--teal);
         background: var(--teal-l);
       }
+
       .legal-toc .toc-divider {
         height: 0.5px;
         background: var(--border-s);
         margin: 0.7rem 0;
       }
+
       .legal-toc .toc-doc-label {
         font-family: var(--font-d);
         font-size: 0.66rem;
@@ -461,6 +515,7 @@
         padding: 3rem clamp(1.75rem, 4vw, 3.5rem);
         box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
       }
+
       .legal-doc-title {
         font-family: var(--font-d);
         font-size: 1.85rem;
@@ -469,24 +524,29 @@
         margin-bottom: 0.5rem;
         padding-top: 0.5rem;
       }
+
       .legal-doc-title:first-child {
         padding-top: 0;
       }
+
       .legal-doc-updated {
         font-family: var(--font-d);
         font-size: 0.74rem;
         color: var(--muted2);
         margin-bottom: 2rem;
       }
+
       .legal-divider {
         height: 1px;
         background: var(--border);
         margin: 3.5rem 0;
       }
+
       .legal-block {
         margin-bottom: 2.25rem;
         scroll-margin-top: 90px;
       }
+
       .legal-block h2 {
         display: flex;
         align-items: center;
@@ -495,6 +555,7 @@
         padding-bottom: 0.6rem;
         border-bottom: 1px solid var(--border-s);
       }
+
       .legal-block-num {
         font-family: var(--font-d);
         font-size: 0.78rem;
@@ -509,23 +570,28 @@
         justify-content: center;
         flex-shrink: 0;
       }
+
       .legal-block p {
         font-size: 0.9rem;
         line-height: 1.8;
       }
+
       .legal-block ul {
         margin: 0 0 1rem 0;
         padding-left: 1.3rem;
       }
+
       .legal-block li {
         font-size: 0.9rem;
         line-height: 1.75;
         color: var(--body);
         margin-bottom: 0.4rem;
       }
+
       .legal-block li strong {
         color: var(--ink);
       }
+
       .legal-note {
         background: rgba(0, 109, 98, 0.06);
         border-left: 3px solid rgba(0, 109, 98, 0.25);
@@ -535,14 +601,17 @@
         color: #6b7f94;
         margin: 1rem 0;
       }
+
       .legal-note strong {
         color: #0d1b2a;
       }
+
       .legal-block a.inline-link {
         color: var(--teal);
         text-decoration: underline;
         text-underline-offset: 2px;
       }
+
       .placeholder {
         background: rgba(180, 128, 0, 0.08);
         color: #946800;
@@ -559,28 +628,33 @@
         border-top: 1px solid rgba(200, 216, 232, 0.1);
         padding: 4rem var(--pad) 2.5rem;
       }
+
       .footer-inner {
         max-width: var(--max);
         margin: 0 auto;
       }
+
       .footer-grid {
         display: grid;
         grid-template-columns: 2fr 1fr 1fr;
         gap: 3rem;
         margin-bottom: 3rem;
       }
+
       .footer-brand p {
         font-size: 0.82rem;
         max-width: 240px;
         line-height: 1.7;
         color: rgba(255, 255, 255, 0.4);
       }
+
       .footer-badges {
         display: flex;
         gap: 0.4rem;
         flex-wrap: wrap;
         margin-top: 0.8rem;
       }
+
       .badge {
         font-family: var(--font-d);
         font-size: 0.6rem;
@@ -592,6 +666,7 @@
         border-radius: 4px;
         padding: 3px 7px;
       }
+
       .fcol h4 {
         font-family: var(--font-d);
         font-size: 0.63rem;
@@ -601,20 +676,25 @@
         color: rgba(255, 255, 255, 0.3);
         margin-bottom: 0.85rem;
       }
+
       .fcol ul {
         list-style: none;
       }
+
       .fcol li {
         margin-bottom: 0.5rem;
       }
+
       .fcol a {
         font-size: 0.82rem;
         color: rgba(255, 255, 255, 0.45);
         transition: color 0.2s;
       }
+
       .fcol a:hover {
         color: #fff;
       }
+
       .footer-bottom {
         border-top: 0.5px solid rgba(255, 255, 255, 0.07);
         padding-top: 1.5rem;
@@ -624,20 +704,24 @@
         flex-wrap: wrap;
         gap: 1rem;
       }
+
       .footer-bottom p {
         font-size: 0.73rem;
         color: rgba(255, 255, 255, 0.3);
         margin: 0;
       }
+
       .footer-legal-links {
         display: flex;
         gap: 1.1rem;
       }
+
       .footer-legal-links a {
         font-size: 0.73rem;
         color: rgba(255, 255, 255, 0.4);
         transition: color 0.2s;
       }
+
       .footer-legal-links a:hover {
         color: #fff;
       }
@@ -654,9 +738,11 @@
         justify-content: center;
         padding: 1.5rem;
       }
+
       .modal-overlay.open {
         display: flex;
       }
+
       .modal {
         background: #111e2e;
         border: 1px solid rgba(200, 216, 232, 0.1);
@@ -667,16 +753,19 @@
         position: relative;
         animation: modalIn 0.25s ease;
       }
+
       @keyframes modalIn {
         from {
           opacity: 0;
           transform: translateY(16px);
         }
+
         to {
           opacity: 1;
           transform: translateY(0);
         }
       }
+
       .modal-close {
         position: absolute;
         top: 1.1rem;
@@ -692,9 +781,11 @@
         cursor: pointer;
         transition: background 0.2s;
       }
+
       .modal-close:hover {
         background: rgba(255, 255, 255, 0.1);
       }
+
       .modal-close svg {
         width: 12px;
         height: 12px;
@@ -703,20 +794,24 @@
         stroke-width: 2.5;
         stroke-linecap: round;
       }
+
       .modal h3 {
         font-size: 1.35rem;
         margin-bottom: 0.4rem;
         color: #fff;
       }
+
       .modal-sub {
         font-size: 0.87rem;
         color: rgba(200, 216, 232, 0.55);
         margin-bottom: 1.75rem;
         line-height: 1.6;
       }
+
       .form-group {
         margin-bottom: 1rem;
       }
+
       .form-group label {
         display: block;
         font-family: var(--font-d);
@@ -727,6 +822,7 @@
         color: var(--muted);
         margin-bottom: 0.4rem;
       }
+
       .form-group input,
       .form-group select,
       .form-group textarea {
@@ -741,11 +837,13 @@
         outline: none;
         transition: border-color 0.2s;
       }
+
       .form-group input:focus,
       .form-group select:focus,
       .form-group textarea:focus {
         border-color: var(--teal);
       }
+
       .form-group select {
         appearance: none;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7F94' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
@@ -754,15 +852,18 @@
         padding-right: 2.2rem;
         cursor: pointer;
       }
+
       .form-group select option {
         background: #111e2e;
         color: #fff;
       }
+
       .form-row {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0.85rem;
       }
+
       .form-note {
         font-size: 0.75rem;
         color: var(--muted);
@@ -776,49 +877,61 @@
         .legal-layout {
           grid-template-columns: 1fr;
         }
+
         .legal-toc {
           position: static;
         }
       }
+
       @media (max-width: 768px) {
         .nav-links,
         .nav-right .btn,
         .nav-pill {
           display: none;
         }
+
         .hamburger {
           display: flex;
         }
+
         .footer-grid {
           grid-template-columns: 1fr 1fr;
         }
+
         .form-row {
           grid-template-columns: 1fr;
         }
+
         .legal-content {
           padding: 2rem 1.25rem;
         }
+
         .footer-bottom {
           flex-direction: column;
           align-items: flex-start;
         }
+
         .legal-toc {
           display: none;
         }
+
         .legal-layout {
           gap: 0;
         }
       }
+
       @media (max-width: 560px) {
         h1 {
           font-size: 1.9rem;
         }
+
         .footer-grid {
           grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
+
   <body>
     <!-- NAV -->
     <nav id="mainnav">
@@ -836,11 +949,7 @@
       <div class="nav-right">
         <a href="for-radiologists.html" class="nav-pill">For Radiologists</a>
         <a
-          href="#"
-          onclick="
-            event.preventDefault();
-            openModal();
-          "
+          href="mailto:connect@hawkeyephysicianspllc.com"
           class="btn btn-teal"
           style="font-size: 0.78rem; padding: 0.52rem 1.25rem"
           >Contact Us</a
@@ -863,11 +972,7 @@
         >For Radiologists →</a
       >
       <a
-        href="#"
-        onclick="
-          event.preventDefault();
-          openModal();
-        "
+        href="mailto:connect@hawkeyephysicianspllc.com"
         style="
           color: var(--ink);
           background: #00c8b4;
@@ -925,7 +1030,9 @@
         <aside class="legal-toc">
           <div class="legal-toc-label">On This Page</div>
           <ul>
-            <li><div class="toc-doc-label">Privacy Policy</div></li>
+            <li>
+              <div class="toc-doc-label">Privacy Policy</div>
+            </li>
             <li><a href="#pp-scope">1. Scope of This Policy</a></li>
             <li><a href="#pp-collect">2. Information We Collect</a></li>
             <li><a href="#pp-use">3. How We Use Information</a></li>
@@ -938,7 +1045,9 @@
             <li><a href="#pp-children">10. Children's Privacy</a></li>
             <li><a href="#pp-contact">11. Contact Us</a></li>
             <div class="toc-divider"></div>
-            <li><div class="toc-doc-label">Terms of Use</div></li>
+            <li>
+              <div class="toc-doc-label">Terms of Use</div>
+            </li>
             <li><a href="#tou-acceptance">1. Acceptance of Terms</a></li>
             <li><a href="#tou-use">2. Use of This Website</a></li>
             <li><a href="#tou-ip">3. Intellectual Property</a></li>
@@ -1329,12 +1438,7 @@
             <ul>
               <li><a href="about.html">About Us</a></li>
               <li>
-                <a
-                  href="#"
-                  onclick="
-                    event.preventDefault();
-                    openModal();
-                  "
+                <a href="mailto:connect@hawkeyephysicianspllc.com"
                   >Contact Us</a
                 >
               </li>
